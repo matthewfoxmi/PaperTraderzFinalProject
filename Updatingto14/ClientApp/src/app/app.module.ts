@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { Secret } from './secret';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '686552421880-hkfl7jppqm0247v9pibcg7qv7f2s0ln0'
+              Secret.secret
             )
           }
         ]
