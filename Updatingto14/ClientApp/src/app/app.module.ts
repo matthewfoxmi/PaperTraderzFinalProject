@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { Secret } from './secret';
+import { StonkListComponent } from './stonk-list/stonk-list.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { Secret } from './secret';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    StonkListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,6 +31,7 @@ import { Secret } from './secret';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'Stonks', component: StonkListComponent },
     ])
   ],
   providers: [
