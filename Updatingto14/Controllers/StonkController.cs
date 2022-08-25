@@ -20,7 +20,7 @@ namespace Updatingto14.Controllers
         [HttpGet("getStonkByTicker/{ticker}")]
         public Stonk getStonkByTicket(string ticker)
         {
-            return context.Stonks.FirstOrDefault(t => t.Ticker == ticker);
+            return context.Stonks.FirstOrDefault(t => t.Ticker.ToUpper() == ticker.ToUpper());
         }
 
 

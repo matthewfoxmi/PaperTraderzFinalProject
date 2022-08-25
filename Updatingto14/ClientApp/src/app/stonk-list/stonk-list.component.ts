@@ -9,13 +9,20 @@ import { StonkService } from '../stonk.service';
 })
 export class StonkListComponent implements OnInit {
 
-  stonksList:Stonk[] = [];
+  stonksList:Stonk = {} as Stonk;
   constructor(private stonkService:StonkService) { }
 
   ngOnInit(): void {
-    this.stonkService.getAllStonks();
-    this.stonksList = this.stonkService.stonks;   
-    console.log(this.stonkService.stonks); 
+    this.stonkService.getAllStonks().subscribe((response:any) => {
+      let allStonks = response;
+      let tickers:string = "";
+      allStonks.forEach((s:any) => {
+        tickers += s.ticker+",";
+      });
+      this.stonkService.getApiStonks(tickers).subscribe((response:any) => {
+        this.stonksList = response;
+      });
+    });
   }
 
 }
