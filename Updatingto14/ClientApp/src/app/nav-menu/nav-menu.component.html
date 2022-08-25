@@ -3,7 +3,7 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">Updatingto14</a>
+      <a class="navbar-brand" [routerLink]="['/']">STONKS</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -20,26 +20,38 @@
         [ngClass]="{ show: isExpanded }"
       >
         <ul class="navbar-nav flex-grow">
-          <li class="nav-item"
-              [routerLinkActive]="['link-active']"
-              [routerLinkActiveOptions]="{ exact: true }">
+          <li
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']">Counter</a>
+            <a class="nav-link text-dark" [routerLink]="['/counter']"
+              >Counter</a
+            >
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']">Fetch data</a>
+            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
+              >Fetch data</a
+            >
           </li>
 
           <li class="nav-item">
-            <button class="btn btn-outline-dark" *ngIf="loggedIn" (click)="signOut()">
+            <button
+              class="btn btn-outline-dark"
+              *ngIf="loggedIn"
+              (click)="signOut()"
+            >
               Sign Out
             </button>
-            <asl-google-signin-button *ngIf="!loggedIn" type='icon' size='medium'></asl-google-signin-button>
+            <asl-google-signin-button
+              *ngIf="!loggedIn"
+              type="icon"
+              size="medium"
+            ></asl-google-signin-button>
           </li>
-
-
         </ul>
       </div>
     </div>
