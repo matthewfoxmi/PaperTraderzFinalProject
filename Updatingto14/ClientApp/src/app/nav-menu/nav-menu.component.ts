@@ -1,5 +1,5 @@
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { UserService } from '../user.service';
 
 @Component({

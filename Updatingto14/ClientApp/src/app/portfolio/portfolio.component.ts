@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { Component, Input, OnInit } from '@angular/core';
+import { NavMenuComponent } from '../nav-menu/nav-menu.component';
 import { UserService } from '../user.service';
 
 @Component({
@@ -8,9 +10,16 @@ import { UserService } from '../user.service';
 })
 export class PortfolioComponent implements OnInit {
 
-  constructor(private userService:UserService) { }
+  user: SocialUser = {} as SocialUser;
+  loggedIn: boolean = false;
 
+  constructor(private userService:UserService, private authService: SocialAuthService) { }
+  // when a user logs in, the loggedin bool gets turned to true.  We can use this to only display portfolio when someone is logged in
   ngOnInit(): void {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+    })
   }
 
 }
