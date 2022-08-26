@@ -13,10 +13,10 @@ export class LeaderBoardComponent implements OnInit {
   rank:number = 0;
   constructor(private userService:UserService) { }
 
+  //brings in user data from SQL database and on C# side they are sorted by total portfolio value
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe((response:User[]) => {
       this.users = response;
-      // console.log(response);
     })
   }
 

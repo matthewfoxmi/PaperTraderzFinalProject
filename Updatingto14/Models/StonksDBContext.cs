@@ -26,7 +26,7 @@ namespace Updatingto14.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer($"Data Source={Secret.server};Initial Catalog=StonksDB; User Id={Secret.userName}; Password={Secret.password};");
+                optionsBuilder.UseSqlServer("Data Source=papertraderz.database.windows.net;Initial Catalog=StonksDB; User Id=TeamChungusStonks; Password=F4ncylivingherewecome;");
             }
         }
 
@@ -34,19 +34,17 @@ namespace Updatingto14.Models
         {
             modelBuilder.Entity<InvestedStock>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.Property(e => e.InvestedTicker).HasMaxLength(30);
 
                 entity.HasOne(d => d.InvestedTickerNavigation)
-                    .WithMany()
+                    .WithMany(p => p.InvestedStocks)
                     .HasForeignKey(d => d.InvestedTicker)
-                    .HasConstraintName("FK__InvestedS__Inves__656C112C");
+                    .HasConstraintName("FK__InvestedS__Inves__73BA3083");
 
                 entity.HasOne(d => d.User)
-                    .WithMany()
+                    .WithMany(p => p.InvestedStocks)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__InvestedS__UserI__66603565");
+                    .HasConstraintName("FK__InvestedS__UserI__74AE54BC");
             });
 
             modelBuilder.Entity<Stonk>(entity =>
@@ -72,19 +70,17 @@ namespace Updatingto14.Models
 
             modelBuilder.Entity<WatchingStock>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.Property(e => e.WatchingTicker).HasMaxLength(30);
 
                 entity.HasOne(d => d.User)
-                    .WithMany()
+                    .WithMany(p => p.WatchingStocks)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__WatchingS__UserI__6383C8BA");
+                    .HasConstraintName("FK__WatchingS__UserI__70DDC3D8");
 
                 entity.HasOne(d => d.WatchingTickerNavigation)
-                    .WithMany()
+                    .WithMany(p => p.WatchingStocks)
                     .HasForeignKey(d => d.WatchingTicker)
-                    .HasConstraintName("FK__WatchingS__Watch__628FA481");
+                    .HasConstraintName("FK__WatchingS__Watch__6FE99F9F");
             });
 
             OnModelCreatingPartial(modelBuilder);

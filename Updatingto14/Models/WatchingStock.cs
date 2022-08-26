@@ -5,6 +5,7 @@ namespace Updatingto14.Models
 {
     public partial class WatchingStock
     {
+        public int Id { get; set; }
         public string? WatchingTicker { get; set; }
         public int? UserId { get; set; }
 

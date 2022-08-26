@@ -13,6 +13,7 @@ import { StonkListComponent } from './stonk-list/stonk-list.component';
 import { WatchListComponent } from './watch-list/watch-list.component';
 import { LeaderBoardComponent } from './leader-board/leader-board.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { StonkDetailsComponent } from './stonk-details/stonk-details.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
     StonkListComponent,
     WatchListComponent,
     LeaderBoardComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    StonkDetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -34,6 +36,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
       { path: 'Stonks', component: StonkListComponent },
       { path: 'WatchList', component: WatchListComponent },
       { path: 'Leaderboard', component: LeaderBoardComponent },
+      { path: 'StonkDetails/:ticker', component: StonkDetailsComponent }
     ])
   ],
   providers: [

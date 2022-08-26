@@ -5,6 +5,7 @@ namespace Updatingto14.Models
 {
     public partial class InvestedStock
     {
+        public int Id { get; set; }
         public string? InvestedTicker { get; set; }
         public float? PurchasePrice { get; set; }
         public int? UserId { get; set; }
