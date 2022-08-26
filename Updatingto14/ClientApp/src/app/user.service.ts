@@ -16,4 +16,8 @@ export class UserService {
   getUserById(id:string):any{
     return this.http.get(`${this.baseUrl}${this.endpoint}/getUserByGoogleId/${id}`);
   }
+
+  createNewUser(id:string):any{
+    return this.http.post(`${this.baseUrl}${this.endpoint}/createNewUser?googleId=${id}`, {})
+  }
 }

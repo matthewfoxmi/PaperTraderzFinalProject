@@ -21,5 +21,29 @@ namespace Updatingto14.Controllers
         {
             return context.Users.FirstOrDefault(g => g.GoogleId == googleId);
         }
+
+        [HttpPost("createNewUser")]
+        public User createNewUser(string googleId)
+        {
+            if(context.Users.Any(g => g.GoogleId == googleId))
+            {
+                return null;
+            }
+            else
+            {
+                User newUser = new User()
+                {
+                    ProfileName = "",
+                    UserIcon = null,
+                    CurrentCash = 10000,
+                    PortfolioTotalValue = 10000,
+                    GoogleId = googleId
+                };
+                context.Users.Add(newUser);
+                context.SaveChanges();
+                return newUser;
+                
+            }
+        }
     }
 }
