@@ -7,20 +7,22 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { Secret } from './secret';
 import { StonkListComponent } from './stonk-list/stonk-list.component';
+import { WatchListComponent } from './watch-list/watch-list.component';
+import { LeaderBoardComponent } from './leader-board/leader-board.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
-    StonkListComponent
+    StonkListComponent,
+    WatchListComponent,
+    LeaderBoardComponent,
+    PortfolioComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -28,10 +30,10 @@ import { StonkListComponent } from './stonk-list/stonk-list.component';
     FormsModule,
     SocialLoginModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: '', component: PortfolioComponent, pathMatch: 'full' },
       { path: 'Stonks', component: StonkListComponent },
+      { path: 'WatchList', component: WatchListComponent },
+      { path: 'Leaderboard', component: LeaderBoardComponent },
     ])
   ],
   providers: [
