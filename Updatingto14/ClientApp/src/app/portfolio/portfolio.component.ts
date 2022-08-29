@@ -19,7 +19,7 @@ export class PortfolioComponent implements OnInit {
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
       this.user = user;
-      WatchingService.googleId = user.id;
+      UserService.user.id = user.id;
       this.loggedIn = (user != null);
     })
   }
