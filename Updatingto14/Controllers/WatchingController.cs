@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Updatingto14.Models;
 
 namespace Updatingto14.Controllers
@@ -11,10 +12,11 @@ namespace Updatingto14.Controllers
         StonksDBContext context = new StonksDBContext();
 
         [HttpGet("ShowWatchingStocks")]
-        public List<WatchingStock> ShowWatchingStocks(string googleId)
+        public List<String> ShowWatchingStocks(string googleId)
         {
             int UserId = context.Users.FirstOrDefault(u => u.GoogleId == googleId).Id;
-            return context.WatchingStocks.Where(x => x.UserId == UserId).OrderBy(x => x.WatchingTicker).ToList();
+            //return context.WatchingStocks.Where(x => x.UserId == UserId).OrderBy(x => x.WatchingTicker).ToList();
+            return context.WatchingStocks.Include(w => w.User).Where(w => w.UserId == UserId).Select(w => w.WatchingTicker).ToList();
         }
 
         [HttpPost("AddWatchingStock")]
