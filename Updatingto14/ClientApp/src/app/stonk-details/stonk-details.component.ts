@@ -17,31 +17,35 @@ export class StonkDetailsComponent implements OnInit {
   user: SocialUser = {} as SocialUser;
   loggedIn: boolean = false;
   addedToWatching:string[] = [];
-
+  ticker:string = "";
   constructor(private watchingService:WatchingService, private stonkService:StonkService, private route:ActivatedRoute, private authService: SocialAuthService) { }
   ngOnInit(): void {
     let params = this.route.snapshot.paramMap;
-    let ticker:string = String(params.get("ticker"));
-    this.stonkService.getApiStonks(ticker).subscribe((response:Stonk) => {
+    this.ticker = String(params.get("ticker"));
+    this.stonkService.getApiStonks(this.ticker).subscribe((response:Stonk) => {
       this.displayStonk = response;
       //console.log(response);
     });
     this.watchingService.getAllWatchingStocks().subscribe((response:any) => {
       this.addedToWatching = response;
-      console.log(response);
-    })
-    if(this.addedToWatching.includes(ticker)){
-      this.isWatched = true;
+      console.log(response);      
+    })    
+
+  }
+  getWatching():boolean {
+    if(this.addedToWatching.includes(this.ticker)){
+      return true;
     }else{
-      this.isWatched = false;
+      return false;
     }
   }
-  
+
   addWatchingStock():any{
     let params = this.route.snapshot.paramMap;
     let ticker:string = String(params.get("ticker"));
     this.watchingService.addWatchingStock(ticker).subscribe((response:any) => {
       //console.log(response);
+      this.addedToWatching.push(this.ticker);
     });
   }
 
@@ -50,9 +54,9 @@ export class StonkDetailsComponent implements OnInit {
     let ticker:string = String(params.get("ticker"));
     this.watchingService.removeWatchingStock(ticker).subscribe((response:any) => {
       //console.log(response);
+      let index = this.addedToWatching.findIndex(x => x == this.ticker);
+      this.addedToWatching.splice(index,1);
   });
-}
-  
-  //create a method that goes to DB and searches if a table contains ticker.  on html side call method and do s.ticker
+}  
   
 }
