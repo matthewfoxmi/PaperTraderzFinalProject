@@ -6,6 +6,7 @@ import { Inject, Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UserService {
+  //gives us access to the logged in google ID.  Can pass back to SQL to get the user info
   static user:SocialUser;
   endpoint:string = "api/User";
   constructor(@Inject("BASE_URL") private baseUrl:string, private http:HttpClient) { }

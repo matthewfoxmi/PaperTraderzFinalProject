@@ -19,6 +19,7 @@ export class StonkDetailsComponent implements OnInit {
   addedToWatching:string[] = [];
   ticker:string = "";
   constructor(private watchingService:WatchingService, private stonkService:StonkService, private route:ActivatedRoute, private authService: SocialAuthService) { }
+  //grabs ticker from URL, sends ticker to stock API to pull relevant data
   ngOnInit(): void {
     let params = this.route.snapshot.paramMap;
     this.ticker = String(params.get("ticker"));
@@ -32,6 +33,8 @@ export class StonkDetailsComponent implements OnInit {
     })    
 
   }
+  //checks if the addedtowatching array contains the ticker, if so return true
+  //results in only the remove from watchlist button showing if true
   getWatching():boolean {
     if(this.addedToWatching.includes(this.ticker)){
       return true;
@@ -39,7 +42,7 @@ export class StonkDetailsComponent implements OnInit {
       return false;
     }
   }
-
+//Function to add a stock to our DB.  takes ticker from URL and passes it back to C# side
   addWatchingStock():any{
     let params = this.route.snapshot.paramMap;
     let ticker:string = String(params.get("ticker"));
@@ -48,7 +51,7 @@ export class StonkDetailsComponent implements OnInit {
       this.addedToWatching.push(this.ticker);
     });
   }
-
+//Removes a stock from DB.  Takes ticker from URL again, and sends back the ticker.  UserID is also sent back to C# side from service
   removeWatchingStock():any{
     let params = this.route.snapshot.paramMap;
     let ticker:string = String(params.get("ticker"));

@@ -7,7 +7,6 @@ import { UserService } from './user.service';
 })
 export class WatchingService {
 
-public static googleId:string;
 
   endpoint:string = "api/Watching";
   constructor(@Inject("BASE_URL") private baseUrl:string, private http:HttpClient) { }
