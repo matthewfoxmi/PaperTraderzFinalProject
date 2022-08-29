@@ -8,5 +8,9 @@
   Today's Change: ${{ displayStonk.tickers[0].todaysChange }} which is:
   {{ displayStonk.tickers[0].todaysChangePerc }}%
 </h2>
-<button (click)="addWatchingStock()" *ngIf="!isWatched">Add Stocky Boi</button>
-<button *ngIf="isWatched">remove</button>
+<!-- <button (click)="addWatchingStock()" *ngIf="isWatched">Watch</button>
+<button (click)="removeWatchingStock()" *ngIf="!isWatched">
+  Stop Watching
+</button> -->
+<button (click)="addWatchingStock()">Watch</button>
+<button (click)="removeWatchingStock()">Stop Watching</button>

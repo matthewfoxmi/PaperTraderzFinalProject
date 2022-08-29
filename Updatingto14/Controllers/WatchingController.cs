@@ -33,9 +33,10 @@ namespace Updatingto14.Controllers
         }
 
         [HttpDelete("RemoveWatchingStock")]
-        public WatchingStock RemoveWatchingStock(string ticker, int userId)
+        public WatchingStock RemoveWatchingStock(string ticker, string googleId)
         {
-            WatchingStock watchStock = context.WatchingStocks.FirstOrDefault(w => w.WatchingTicker == ticker && w.UserId == userId);
+            int UserId = context.Users.FirstOrDefault(u => u.GoogleId == googleId).Id;
+            WatchingStock watchStock = context.WatchingStocks.FirstOrDefault(w => w.WatchingTicker == ticker && w.UserId == UserId);
             context.WatchingStocks.Remove(watchStock);
             context.SaveChanges();
             return watchStock;

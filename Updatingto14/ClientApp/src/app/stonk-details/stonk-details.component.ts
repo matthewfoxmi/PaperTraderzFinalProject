@@ -28,6 +28,7 @@ export class StonkDetailsComponent implements OnInit {
     });
     this.watchingService.getAllWatchingStocks().subscribe((response:any) => {
       this.addedToWatching = response;
+      console.log(response);
     })
     if(this.addedToWatching.includes(ticker)){
       this.isWatched = true;
@@ -44,8 +45,14 @@ export class StonkDetailsComponent implements OnInit {
     });
   }
 
+  removeWatchingStock():any{
+    let params = this.route.snapshot.paramMap;
+    let ticker:string = String(params.get("ticker"));
+    this.watchingService.removeWatchingStock(ticker).subscribe((response:any) => {
+      //console.log(response);
+  });
+}
+  
   //create a method that goes to DB and searches if a table contains ticker.  on html side call method and do s.ticker
-  addOrRemoveWatchingStock():any{
-
-  }
+  
 }

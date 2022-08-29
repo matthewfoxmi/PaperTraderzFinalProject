@@ -20,8 +20,8 @@ public static googleId:string;
     return this.http.post(`${this.baseUrl}${this.endpoint}/AddWatchingStock?ticker=${ticker}&googleId=${UserService.user.id}`,{});
   }
   
-  removeWatchingStock(ticker:string, userId:number):any{
-    return this.http.delete(`${this.baseUrl}${this.endpoint}/RemoveWatchingStock?ticker=${ticker}&userId=${userId}`,{});
+  removeWatchingStock(ticker:string):any{
+    return this.http.delete(`${this.baseUrl}${this.endpoint}/RemoveWatchingStock?ticker=${ticker}&googleId=${UserService.user.id}`,{});
   }
   
 }
