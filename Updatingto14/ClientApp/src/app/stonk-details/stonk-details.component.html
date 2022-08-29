@@ -9,6 +9,10 @@
   {{ displayStonk.tickers[0].todaysChangePerc }}%
 </h2>
 <button (click)="addWatchingStock()" *ngIf="!getWatching()">Watch</button>
-<button (click)="removeWatchingStock()" *ngIf="getWatching()">
+<button
+  (click)="removeWatchingStock()"
+  *ngIf="getWatching()"
+  routerLink="/WatchList"
+>
   Stop Watching
 </button>
