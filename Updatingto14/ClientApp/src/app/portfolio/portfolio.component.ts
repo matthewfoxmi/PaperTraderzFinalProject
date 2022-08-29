@@ -2,6 +2,7 @@ import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, Input, OnInit } from '@angular/core';
 import { NavMenuComponent } from '../nav-menu/nav-menu.component';
 import { UserService } from '../user.service';
+import { WatchingService } from '../watching.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -18,6 +19,7 @@ export class PortfolioComponent implements OnInit {
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
       this.user = user;
+      WatchingService.googleId = user.id;
       this.loggedIn = (user != null);
     })
   }

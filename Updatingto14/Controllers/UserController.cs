@@ -42,7 +42,6 @@ namespace Updatingto14.Controllers
                 context.Users.Add(newUser);
                 context.SaveChanges();
                 return newUser;
-                
             }
         }
     }

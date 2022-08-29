@@ -17,11 +17,13 @@ export class WatchListComponent implements OnInit {
   ngOnInit(): void {
     this.watchingService.getAllWatchingStocks().subscribe((response:any) => {
       let allStonks = response;
+      console.log(response);
       let tickers:string = "";
       allStonks.forEach((s:any) => {
         tickers += s.ticker+",";
       });
       this.stonkService.getApiStonks(tickers).subscribe((response:any) => {
+        // console.log(response);
         this.stonk = response;
       });
     })

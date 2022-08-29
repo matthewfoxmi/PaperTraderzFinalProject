@@ -11,18 +11,19 @@ namespace Updatingto14.Controllers
         StonksDBContext context = new StonksDBContext();
 
         [HttpGet("ShowWatchingStocks")]
-        public List<WatchingStock> ShowWatchingStocks(int userId)
+        public List<WatchingStock> ShowWatchingStocks(string googleId)
         {
-            return context.WatchingStocks.Where(x => x.UserId == userId).OrderBy(x => x.WatchingTicker).ToList();
+            int UserId = context.Users.FirstOrDefault(u => u.GoogleId == googleId).Id;
+            return context.WatchingStocks.Where(x => x.UserId == UserId).OrderBy(x => x.WatchingTicker).ToList();
         }
 
         [HttpPost("AddWatchingStock")]
-        public WatchingStock AddWatchingStock(string ticker, int userId)
+        public WatchingStock AddWatchingStock(string ticker, string googleId)
         {
             WatchingStock watchStock = new WatchingStock()
             {
                 WatchingTicker = ticker,
-                UserId = userId
+                UserId = context.Users.FirstOrDefault(u => u.GoogleId == googleId).Id
             };
             context.WatchingStocks.Add(watchStock);
             context.SaveChanges();
