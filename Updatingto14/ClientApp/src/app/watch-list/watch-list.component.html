@@ -1,3 +1,10 @@
 <div *ngFor="let s of stonk.tickers">
   <h3>{{ s.ticker }}</h3>
+  <button
+    type="button"
+    class="btn btn-primary"
+    routerLink="/StonkDetails/{{ s.ticker }}"
+  >
+    Click for Deets
+  </button>
 </div>

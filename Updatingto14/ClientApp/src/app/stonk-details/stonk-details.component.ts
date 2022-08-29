@@ -16,6 +16,7 @@ export class StonkDetailsComponent implements OnInit {
   isWatched:boolean = false;
   user: SocialUser = {} as SocialUser;
   loggedIn: boolean = false;
+  addedToWatching:string[] = [];
 
   constructor(private watchingService:WatchingService, private stonkService:StonkService, private route:ActivatedRoute, private authService: SocialAuthService) { }
   ngOnInit(): void {
@@ -25,7 +26,16 @@ export class StonkDetailsComponent implements OnInit {
       this.displayStonk = response;
       //console.log(response);
     });
+    this.watchingService.getAllWatchingStocks().subscribe((response:any) => {
+      this.addedToWatching = response;
+    })
+    if(this.addedToWatching.includes(ticker)){
+      this.isWatched = true;
+    }else{
+      this.isWatched = false;
+    }
   }
+  
   addWatchingStock():any{
     let params = this.route.snapshot.paramMap;
     let ticker:string = String(params.get("ticker"));
@@ -34,4 +44,8 @@ export class StonkDetailsComponent implements OnInit {
     });
   }
 
+  //create a method that goes to DB and searches if a table contains ticker.  on html side call method and do s.ticker
+  addOrRemoveWatchingStock():any{
+
+  }
 }
