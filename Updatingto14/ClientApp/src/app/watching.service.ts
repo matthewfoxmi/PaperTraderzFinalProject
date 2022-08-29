@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,11 @@ public static googleId:string;
   constructor(@Inject("BASE_URL") private baseUrl:string, private http:HttpClient) { }
 
   getAllWatchingStocks():any{
-    return this.http.get(`${this.baseUrl}${this.endpoint}/ShowWatchingStocks?googleId=${WatchingService.googleId}`);
+    return this.http.get(`${this.baseUrl}${this.endpoint}/ShowWatchingStocks?googleId=${UserService.user.id}`);
   }
 
   addWatchingStock(ticker:string):any{
-    return this.http.post(`${this.baseUrl}${this.endpoint}/AddWatchingStock?ticker=${ticker}&googleId=${WatchingService.googleId}`,{});
+    return this.http.post(`${this.baseUrl}${this.endpoint}/AddWatchingStock?ticker=${ticker}&googleId=${UserService.user.id}`,{});
   }
   
   removeWatchingStock(ticker:string, userId:number):any{

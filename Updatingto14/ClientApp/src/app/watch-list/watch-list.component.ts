@@ -20,10 +20,11 @@ export class WatchListComponent implements OnInit {
       console.log(response);
       let tickers:string = "";
       allStonks.forEach((s:any) => {
-        tickers += s.ticker+",";
+        tickers += s+",";
       });
+      console.log(tickers)
       this.stonkService.getApiStonks(tickers).subscribe((response:any) => {
-        // console.log(response);
+        console.log(response);
         this.stonk = response;
       });
     })

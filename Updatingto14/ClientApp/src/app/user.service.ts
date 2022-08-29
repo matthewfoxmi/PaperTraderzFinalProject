@@ -1,3 +1,4 @@
+import { SocialUser } from '@abacritt/angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 
@@ -5,7 +6,7 @@ import { Inject, Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UserService {
-
+  static user:SocialUser;
   endpoint:string = "api/User";
   constructor(@Inject("BASE_URL") private baseUrl:string, private http:HttpClient) { }
 

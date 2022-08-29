@@ -23,14 +23,14 @@ export class StonkDetailsComponent implements OnInit {
     let ticker:string = String(params.get("ticker"));
     this.stonkService.getApiStonks(ticker).subscribe((response:Stonk) => {
       this.displayStonk = response;
-      console.log(response);
+      //console.log(response);
     });
   }
   addWatchingStock():any{
     let params = this.route.snapshot.paramMap;
     let ticker:string = String(params.get("ticker"));
     this.watchingService.addWatchingStock(ticker).subscribe((response:any) => {
-      console.log(response);
+      //console.log(response);
     });
   }
 
