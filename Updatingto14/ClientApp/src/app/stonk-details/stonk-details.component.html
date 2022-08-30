@@ -18,5 +18,9 @@
 </button>
 <form #purchaseStockForm="ngForm" (ngSubmit)="purchaseStock(purchaseStockForm)">
   <input type="number" name="quantity" min="1" ngModel />
-  <button>Submit</button>
+  <button>Purchase</button>
+</form>
+<form #sellStockForm="ngForm" (ngSubmit)="sellStock(sellStockForm)">
+  <input type="number" name="quantity" min="1" ngModel />
+  <button>Sell</button>
 </form>

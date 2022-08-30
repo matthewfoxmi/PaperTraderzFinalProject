@@ -32,7 +32,7 @@ export class StonkDetailsComponent implements OnInit {
     });
     this.watchingService.getAllWatchingStocks().subscribe((response:any) => {
       this.addedToWatching = response;
-      console.log(response);      
+      //console.log(response);      
     })    
 
   }
@@ -71,11 +71,23 @@ export class StonkDetailsComponent implements OnInit {
     let currentPrice:number;
     this.stonkService.getApiStonks(ticker).subscribe((response: Stonk) => {
       currentPrice = response.tickers[0].day.c;
-      console.log(currentPrice);
+      //console.log(currentPrice);
       this.investedStockService.purchaseStock(ticker, currentPrice, form.form.value.quantity).subscribe((response:InvestedStock) => {
+        //console.log(response);
+      });
+    });
+  }
+
+  sellStock(form:NgForm):any{
+    let params = this.route.snapshot.paramMap;
+    let ticker:string = String(params.get("ticker"));
+    let currentPrice:number;
+    this.stonkService.getApiStonks(ticker).subscribe((response: Stonk) => {
+      currentPrice = response.tickers[0].day.c;
+      console.log(currentPrice);
+      this.investedStockService.sellStock(ticker, currentPrice, form.form.value.quantity).subscribe((response:InvestedStock) => {
         console.log(response);
       });
     });
-    
   }
 }

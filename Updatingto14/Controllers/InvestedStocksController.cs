@@ -13,10 +13,11 @@ namespace Updatingto14.Controllers
         [HttpPost("PurchaseStock")]
         public InvestedStock PurchaseStock(string ticker, string googleId, float purchasePrice, int sharesPurchased)
         {
-
+            //determines if user has already purchased stock, if so updates invested stock values, if not, adds new invested stock to table
             User user = context.Users.FirstOrDefault(u => u.GoogleId == googleId);
             if (context.InvestedStocks.FirstOrDefault(i => i.InvestedTicker == ticker && i.UserId == user.Id) != null)
             {
+                //confirms user has the cash to make purchase
                 if (purchasePrice * sharesPurchased > context.Users.FirstOrDefault(u => u.GoogleId == googleId).CurrentCash)
                 {
                     return null;
@@ -28,6 +29,7 @@ namespace Updatingto14.Controllers
                     //owned shares multiplied by price they were bought for, to give the total investment, and new shares buying multiplied by the new price
                     //adds those together, divided by the total amount of shares owned now.
                     invested.PurchasePrice = ((invested.PurchasePrice * invested.SharesOwned) + (sharesPurchased * purchasePrice)) / (invested.SharesOwned + sharesPurchased);
+                    user.CurrentCash -= (purchasePrice * sharesPurchased);
                     context.InvestedStocks.Update(invested);
                     context.SaveChanges();
                     return invested;
@@ -69,20 +71,33 @@ namespace Updatingto14.Controllers
 
         }
         [HttpPatch("SellStock")]
-        public InvestedStock SellStock(string ticker, string googleId, float purchasePrice, int sharesOwned)
+        public void SellStock(string ticker, string googleId, float sellPrice, int sharesSold)
         {
+            
             User user = context.Users.FirstOrDefault(u => u.GoogleId == googleId);
             InvestedStock stock = context.InvestedStocks.FirstOrDefault(x => x.UserId == user.Id && x.InvestedTicker == ticker);
-            if (stock.SharesOwned < sharesOwned)
+            
+
+            //confirms user is not able to sell more share than they hold
+            if (stock.SharesOwned < sharesSold)
             {
-                return null;
+                //return null;
             }
+            //removes invested stock if all shares are sold
+            else if (stock.SharesOwned - sharesSold == 0)
+            {
+                user.CurrentCash += (sellPrice * sharesSold);
+                context.InvestedStocks.Remove(stock);
+                context.SaveChanges();
+               //return stock;
+            }
+            //updates invested stock when shares are sold
             else
             {
-                stock.SharesOwned -= sharesOwned;
-                user.CurrentCash += purchasePrice * sharesOwned;
+                stock.SharesOwned -= sharesSold;
+                user.CurrentCash += (sellPrice * sharesSold);
                 context.SaveChanges();
-                return stock;
+                //return stock;
             }
 
         }

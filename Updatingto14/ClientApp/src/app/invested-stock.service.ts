@@ -16,5 +16,9 @@ export class InvestedStockService {
     return this.http.post(`${this.baseUrl}${this.endpoint}/PurchaseStock?ticker=${ticker}&purchasePrice=${purchasePrice}&sharesPurchased=${sharesPurchased}&googleId=${UserService.user.id}`,{});
   }
 
+  sellStock(ticker:string, sellPrice:number, sharesSold: number):any{
+    return this.http.patch(`${this.baseUrl}${this.endpoint}/SellStock?ticker=${ticker}&sellPrice=${sellPrice}&sharesSold=${sharesSold}&googleId=${UserService.user.id}`, {});
+  }
+
 
 }

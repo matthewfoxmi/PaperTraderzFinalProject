@@ -18,6 +18,7 @@ export class NavMenuComponent implements OnInit {
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
       this.user = user;
+      // this.user.firstName
       UserService.user = user;
       this.loggedIn = (user != null);
       if(this.loggedIn == true){
