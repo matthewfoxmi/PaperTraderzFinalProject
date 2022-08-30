@@ -10,8 +10,9 @@ namespace Updatingto14.Models
         public float? PurchasePrice { get; set; }
         public int? UserId { get; set; }
         public int? SharesOwned { get; set; }
-
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual Stonk? InvestedTickerNavigation { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual User? User { get; set; }
     }
 }

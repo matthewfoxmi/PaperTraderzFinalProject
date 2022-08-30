@@ -8,7 +8,8 @@ const PROXY_CONFIG = [
     context: [
       "/api/Stonk",
       "/api/User",
-      "/api/Watching"
+      "/api/Watching",
+      "/api/InvestedStocks"
    ],
     target: target,
     secure: false
