@@ -16,3 +16,7 @@
 >
   Stop Watching
 </button>
+<form #purchaseStockForm="ngForm" (ngSubmit)="purchaseStock(purchaseStockForm)">
+  <input type="number" name="quantity" min="1" ngModel />
+  <button>Submit</button>
+</form>

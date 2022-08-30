@@ -1,6 +1,9 @@
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { InvestedStock } from '../invested-stock';
+import { InvestedStockService } from '../invested-stock.service';
 import { Stonk } from '../stonk';
 import { StonkService } from '../stonk.service';
 import { WatchingService } from '../watching.service';
@@ -18,7 +21,7 @@ export class StonkDetailsComponent implements OnInit {
   loggedIn: boolean = false;
   addedToWatching:string[] = [];
   ticker:string = "";
-  constructor(private watchingService:WatchingService, private stonkService:StonkService, private route:ActivatedRoute, private authService: SocialAuthService) { }
+  constructor(private investedStockService:InvestedStockService, private watchingService:WatchingService, private stonkService:StonkService, private route:ActivatedRoute, private authService: SocialAuthService) { }
   //grabs ticker from URL, sends ticker to stock API to pull relevant data
   ngOnInit(): void {
     let params = this.route.snapshot.paramMap;
@@ -62,4 +65,17 @@ export class StonkDetailsComponent implements OnInit {
   });
 }  
   
+  purchaseStock(form:NgForm):any{    
+    let params = this.route.snapshot.paramMap;
+    let ticker:string = String(params.get("ticker"));
+    let currentPrice:number;
+    this.stonkService.getApiStonks(ticker).subscribe((response: Stonk) => {
+      currentPrice = response.tickers[0].day.c;
+      console.log(currentPrice);
+      this.investedStockService.purchaseStock(ticker, currentPrice, form.form.value.quantity).subscribe((response:InvestedStock) => {
+        console.log(response);
+      });
+    });
+    
+  }
 }
