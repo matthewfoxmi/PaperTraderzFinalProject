@@ -27,16 +27,19 @@ export class PortfolioComponent implements OnInit {
       UserService.user.id = user.id;
       this.loggedIn = (user != null);
     })
-    
+    //calls to SQL db and returns the invested stocks as an array
     this.investedStockService.getAllInvested().subscribe((response:InvestedStock[]) => {
       this.allStonks = response;
+      //sorts all tickers in array alphabetically
       this.allStonks.sort((a, b) => a.investedTicker.localeCompare(b.investedTicker))
       console.log(response)
+      //lines 37-39 grabs the tickers and combines into one string to pass into api for calling those stocks
       let tickers:string = "";
       this.allStonks.forEach((s:any) => {
         tickers += s.investedTicker+",";
-        //console.log(tickers)
+        //console.log(tickers)        
       });
+      //ticker string from above is used to call api and return the stock data ordered alphabetically by ticker
       this.stonkService.getApiStonks(tickers).subscribe((response:any) => {
         this.stonk = response;
         this.stonk.tickers.sort((a, b) => a.ticker.localeCompare(b.ticker))

@@ -82,9 +82,11 @@ export class StonkDetailsComponent implements OnInit {
     let params = this.route.snapshot.paramMap;
     let ticker:string = String(params.get("ticker"));
     let currentPrice:number;
+    //calls to the api and obtains current price 
     this.stonkService.getApiStonks(ticker).subscribe((response: Stonk) => {
       currentPrice = response.tickers[0].day.c;
       console.log(currentPrice);
+      //passes in the ticker, current price (obtained above) and quantity of stocks to sell from form
       this.investedStockService.sellStock(ticker, currentPrice, form.form.value.quantity).subscribe((response:InvestedStock) => {
         console.log(response);
       });
