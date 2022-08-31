@@ -20,4 +20,6 @@ export class LeaderBoardComponent implements OnInit {
     })
   }
 
+  
+
 }

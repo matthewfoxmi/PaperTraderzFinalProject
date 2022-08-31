@@ -1,10 +1,11 @@
 <div *ngIf="loggedIn">
   <p>You're logged in yahoo</p>
+  <p>Portfolio Value: ${{ portfolioValue }}</p>
   <!-- structural directive = ngfor ng if -->
   <div *ngFor="let s of stonk.tickers; index as i">
     <h1>{{ s.ticker }} - ${{ s.day.c }}</h1>
-    <p>cost basis: ${{ allStonks[i].purchasePrice }}</p>
-    <p>Shares Owned: {{ allStonks[i].sharesOwned }}</p>
+    <p>cost basis: ${{ allStonksOwnedByUser[i].purchasePrice }}</p>
+    <p>Shares Owned: {{ allStonksOwnedByUser[i].sharesOwned }}</p>
     <button
       type="button"
       class="btn btn-primary"

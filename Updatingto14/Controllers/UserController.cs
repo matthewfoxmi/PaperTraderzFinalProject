@@ -13,7 +13,7 @@ namespace Updatingto14.Controllers
         [HttpGet("getAllUsers")]
         public List<User> getAllUsers()
         {
-            return context.Users.OrderByDescending(x => x.PortfolioTotalValue).ToList();
+            return context.Users.ToList();
         }
 
         [HttpGet("getUserByGoogleId/{GoogleId}")]
