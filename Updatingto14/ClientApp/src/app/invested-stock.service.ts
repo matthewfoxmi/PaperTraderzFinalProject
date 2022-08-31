@@ -20,5 +20,9 @@ export class InvestedStockService {
     return this.http.patch(`${this.baseUrl}${this.endpoint}/SellStock?ticker=${ticker}&sellPrice=${sellPrice}&sharesSold=${sharesSold}&googleId=${UserService.user.id}`, {});
   }
 
+  getAllInvested():any{
+    return this.http.get(`${this.baseUrl}${this.endpoint}/GetAllInvested?googleId=${UserService.user.id}`);
+  }
+
 
 }

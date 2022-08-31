@@ -1,2 +1,13 @@
-<p>portfolio works!</p>
-<p *ngIf="loggedIn">You're logged in yahoo</p>
+<div *ngIf="loggedIn">
+  <p>You're logged in yahoo</p>
+  <div *ngFor="let s of stonk.tickers">
+    <h1>{{ s.ticker }} - {{ s.day.c }}</h1>
+    <button
+      type="button"
+      class="btn btn-primary"
+      routerLink="/StonkDetails/{{ s.ticker }}"
+    >
+      Click for Deets
+    </button>
+  </div>
+</div>
