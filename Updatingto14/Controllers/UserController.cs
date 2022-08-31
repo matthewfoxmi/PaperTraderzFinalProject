@@ -23,7 +23,7 @@ namespace Updatingto14.Controllers
         }
 
         [HttpPost("createNewUser")]
-        public User createNewUser(string googleId)
+        public User createNewUser(string googleId, string profileName)
         {
             if(context.Users.Any(g => g.GoogleId == googleId))
             {
@@ -33,7 +33,7 @@ namespace Updatingto14.Controllers
             {
                 User newUser = new User()
                 {
-                    ProfileName = "",
+                    ProfileName = profileName,
                     UserIcon = null,
                     CurrentCash = 10000,
                     PortfolioTotalValue = 10000,

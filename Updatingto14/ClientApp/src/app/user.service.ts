@@ -20,6 +20,6 @@ export class UserService {
   }
 
   createNewUser(id:string):any{
-    return this.http.post(`${this.baseUrl}${this.endpoint}/createNewUser?googleId=${id}`, {})
+    return this.http.post(`${this.baseUrl}${this.endpoint}/createNewUser?googleId=${id}&profileName=${UserService.user.firstName}_${UserService.user.lastName}`, {})
   }
 }

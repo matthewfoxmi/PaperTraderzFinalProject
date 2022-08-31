@@ -1,5 +1,6 @@
 <div *ngIf="loggedIn">
-  <p>You're logged in yahoo</p>
+  <p>{{ user.firstName }}</p>
+  <p>Current Cash: {{ currentCash }}</p>
   <p>Portfolio Value: ${{ portfolioValue }}</p>
   <!-- structural directive = ngfor ng if -->
   <div *ngFor="let s of stonk.tickers; index as i">
