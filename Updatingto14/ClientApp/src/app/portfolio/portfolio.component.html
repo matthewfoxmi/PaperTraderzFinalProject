@@ -1,5 +1,6 @@
 <div *ngIf="loggedIn">
   <p>You're logged in yahoo</p>
+  <!-- structural directive = ngfor ng if -->
   <div *ngFor="let s of stonk.tickers; index as i">
     <h1>{{ s.ticker }} - {{ s.day.c }}</h1>
     <p>cost basis: {{ allStonks[i].purchasePrice }}</p>

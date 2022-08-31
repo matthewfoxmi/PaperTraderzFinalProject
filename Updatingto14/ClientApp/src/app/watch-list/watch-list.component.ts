@@ -31,6 +31,7 @@ export class WatchListComponent implements OnInit {
       this.stonkService.getApiStonks(tickers).subscribe((response:any) => {
         console.log(response);
         this.stonk = response;
+        this.stonk.tickers.sort((a, b) => a.ticker.localeCompare(b.ticker))
         this.isEmpty = true;
       });
       }else{

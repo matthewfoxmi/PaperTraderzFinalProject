@@ -23,6 +23,7 @@ export class StonkListComponent implements OnInit {
       });
       this.stonkService.getApiStonks(tickers).subscribe((response:any) => {
         this.stonksList = response;
+        this.stonksList.tickers.sort((a, b) => a.ticker.localeCompare(b.ticker))
       });
     });
   }
