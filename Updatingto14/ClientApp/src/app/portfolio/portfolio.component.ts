@@ -44,6 +44,8 @@ export class PortfolioComponent implements OnInit {
         tickers += s.investedTicker+",";
         //console.log(tickers)        
       });
+
+      //THIS WHOLE CHUNK CALCULATES PORTFOLIO VALUE
       //ticker string from above is used to call api and return the stock data ordered alphabetically by ticker
       this.stonkService.getApiStonks(tickers).subscribe((response:any) => {
         this.stonk = response;
@@ -60,9 +62,10 @@ export class PortfolioComponent implements OnInit {
           this.portfolioValue += this.currentCash;
           this.portfolioValue = Number(this.portfolioValue.toFixed(2));
         });
-        
         console.log(this.portfolioValue);
         //console.log(response)
+
+
       });
     });
   }

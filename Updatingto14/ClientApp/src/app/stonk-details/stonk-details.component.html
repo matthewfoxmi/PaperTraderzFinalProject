@@ -5,8 +5,14 @@
   <br />
   Opening Price: ${{ displayStonk.tickers[0].day.o }}
   <br />
-  Today's Change: ${{ displayStonk.tickers[0].todaysChange }} which is:
-  {{ displayStonk.tickers[0].todaysChangePerc }}%
+  Today's change:
+  {{
+    (displayStonk.tickers[0].day.c - displayStonk.tickers[0].day.o).toFixed(2)
+  }}
+  Change from yesterday's price: ${{
+    displayStonk.tickers[0].todaysChange
+  }}
+  which is: {{ displayStonk.tickers[0].todaysChangePerc }}%
 </h2>
 <button (click)="addWatchingStock()" *ngIf="!getWatching()">Watch</button>
 <button
