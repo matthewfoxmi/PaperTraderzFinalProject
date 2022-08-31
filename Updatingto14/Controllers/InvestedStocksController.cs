@@ -12,10 +12,11 @@ namespace Updatingto14.Controllers
         StonksDBContext context = new StonksDBContext();
 
         [HttpGet("GetAllInvested")]
-        public List <InvestedStock> getAllInvested(string googleId)
+        public List<InvestedStock> GetAllInvested(string googleId)
         {
             User user = context.Users.FirstOrDefault(u => u.GoogleId == googleId);
             return context.InvestedStocks.Include(w => w.User).Where(w => w.UserId == user.Id).ToList();
+            //return context.WatchingStocks.Include(w => w.User).Where(w => w.UserId == UserId).Select(w => w.WatchingTicker).ToList();
         }
 
 
