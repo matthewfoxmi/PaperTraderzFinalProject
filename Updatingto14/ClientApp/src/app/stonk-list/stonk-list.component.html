@@ -1,5 +1,10 @@
 <form #searchStockForm="ngForm" (ngSubmit)="searchForStock(searchStockForm)">
-  <input type="text" name="searchedStock" ngModel />
+  <input
+    type="text"
+    name="searchedStock"
+    placeholder="Search for a stock"
+    ngModel
+  />
   <input type="submit" />
 </form>
 <div
@@ -7,11 +12,27 @@
   class="row col-6 offset-3"
   style="text-align: center"
 >
-  <div class="card m-3 p-3">
+  <div
+    *ngIf="s.prevDay.c < s.day.c"
+    class="card shadow border border-success m-3 p-3"
+  >
     <h1>{{ s.ticker }} - ${{ s.day.c }}</h1>
     <button
       type="button"
-      class="btn btn-primary col-4 offset-4"
+      class="btn btn-success col-4 offset-4"
+      routerLink="/StonkDetails/{{ s.ticker }}"
+    >
+      Click for Deets
+    </button>
+  </div>
+  <div
+    *ngIf="s.prevDay.c > s.day.c"
+    class="card shadow border border-danger m-3 p-3"
+  >
+    <h1>{{ s.ticker }} - ${{ s.day.c }}</h1>
+    <button
+      type="button"
+      class="btn btn-danger col-4 offset-4"
       routerLink="/StonkDetails/{{ s.ticker }}"
     >
       Click for Deets
