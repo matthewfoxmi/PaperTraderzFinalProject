@@ -1,3 +1,7 @@
+<p *ngIf="displayStonk.tickers.length == 0">stonk not found</p>
+<button *ngIf="displayStonk.tickers.length == 0" routerLink="/Stonks">
+  Find a real stock
+</button>
 <h2>
   {{ displayStonk.tickers[0].ticker }}
   <br />

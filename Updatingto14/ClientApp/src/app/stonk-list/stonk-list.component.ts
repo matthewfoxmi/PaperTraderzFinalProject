@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Stonk } from '../stonk';
 import { StonkService } from '../stonk.service';
 import { WatchingService } from '../watching.service';
@@ -11,7 +13,7 @@ import { WatchingService } from '../watching.service';
 export class StonkListComponent implements OnInit {
 
   stonksList:Stonk = {} as Stonk;
-  constructor(private stonkService:StonkService, private watchingService:WatchingService) { }
+  constructor(private stonkService:StonkService, private watchingService:WatchingService, private router:Router) { }
 
   //accesses our SQL database, adds all tickers into singular string to be passed into the api and returns matching stock data
   ngOnInit(): void {
@@ -28,6 +30,9 @@ export class StonkListComponent implements OnInit {
     });
   }
 
-  
+  searchForStock(form:NgForm):any{
+    let search = form.form.value.searchedStock;
+    this.router.navigate([`StonkDetails/${search}`])
+  }  
 
 }

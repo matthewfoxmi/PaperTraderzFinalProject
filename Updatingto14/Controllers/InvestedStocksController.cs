@@ -24,6 +24,15 @@ namespace Updatingto14.Controllers
         {
             //determines if user has already purchased stock, if so updates invested stock values, if not, adds new invested stock to table
             User user = context.Users.FirstOrDefault(u => u.GoogleId == googleId);
+            if (!context.Stonks.Any(x => x.Ticker == ticker))
+            {
+                Stonk newStonk = new Stonk()
+                {
+                    Ticker = ticker,
+                };
+                context.Stonks.Add(newStonk);
+                context.SaveChanges();
+            }
             if (context.InvestedStocks.FirstOrDefault(i => i.InvestedTicker == ticker && i.UserId == user.Id) != null)
             {
                 //confirms user has the cash to make purchase

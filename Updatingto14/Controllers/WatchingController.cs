@@ -22,6 +22,15 @@ namespace Updatingto14.Controllers
         [HttpPost("AddWatchingStock")]
         public WatchingStock AddWatchingStock(string ticker, string googleId)
         {
+            if (!context.Stonks.Any(x => x.Ticker == ticker))
+            {
+                Stonk newStonk = new Stonk()
+                {
+                    Ticker = ticker,
+                };
+                context.Stonks.Add(newStonk);
+                context.SaveChanges();
+            }
             WatchingStock watchStock = new WatchingStock()
             {
                 WatchingTicker = ticker,

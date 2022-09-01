@@ -1,3 +1,7 @@
+<form #searchStockForm="ngForm" (ngSubmit)="searchForStock(searchStockForm)">
+  <input type="text" name="searchedStock" ngModel />
+  <input type="submit" />
+</form>
 <div
   *ngFor="let s of stonksList.tickers"
   class="row col-6 offset-3"
