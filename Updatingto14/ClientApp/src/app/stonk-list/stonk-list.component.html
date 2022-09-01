@@ -1,10 +1,16 @@
-<div *ngFor="let s of stonksList.tickers">
-  <h1>{{ s.ticker }} - ${{ s.day.c }}</h1>
-  <button
-    type="button"
-    class="btn btn-primary"
-    routerLink="/StonkDetails/{{ s.ticker }}"
-  >
-    Click for Deets
-  </button>
+<div
+  *ngFor="let s of stonksList.tickers"
+  class="row col-6 offset-3"
+  style="text-align: center"
+>
+  <div class="card m-3 p-3">
+    <h1>{{ s.ticker }} - ${{ s.day.c }}</h1>
+    <button
+      type="button"
+      class="btn btn-primary col-4 offset-4"
+      routerLink="/StonkDetails/{{ s.ticker }}"
+    >
+      Click for Deets
+    </button>
+  </div>
 </div>

@@ -1,16 +1,24 @@
-<div *ngIf="loggedIn">
-  <p>{{ user.firstName }} {{ user.lastName }}'s account</p>
-  <p>Current Cash: {{ currentCash }}</p>
-  <p>Portfolio Value: ${{ portfolioValue }}</p>
+<div *ngIf="loggedIn" style="text-align: center" class="row col-6 offset-3">
+  <div>
+    <div class="card m-2 p-2">
+      <p>{{ user.firstName }} {{ user.lastName }}'s account</p>
+      <p>Current Cash: {{ currentCash }}</p>
+      <p>Portfolio Value: ${{ portfolioValue }}</p>
+    </div>
+  </div>
   <div *ngIf="isEmpty">
     <!-- structural directive = ngfor ng if -->
-    <div *ngFor="let s of stonk.tickers; index as i">
+    <div
+      *ngFor="let s of stonk.tickers; index as i"
+      class="card m-2 p-2"
+      style="text-align: center"
+    >
       <h1>{{ s.ticker }} - ${{ s.day.c }}</h1>
       <p>cost basis: ${{ allStonksOwnedByUser[i].purchasePrice }}</p>
       <p>Shares Owned: {{ allStonksOwnedByUser[i].sharesOwned }}</p>
       <button
         type="button"
-        class="btn btn-primary"
+        class="btn btn-primary col-4 offset-4"
         routerLink="/StonkDetails/{{ s.ticker }}"
       >
         Click for Deets
