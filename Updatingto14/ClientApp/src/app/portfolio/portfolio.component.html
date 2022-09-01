@@ -2,17 +2,22 @@
   <p>{{ user.firstName }} {{ user.lastName }}'s account</p>
   <p>Current Cash: {{ currentCash }}</p>
   <p>Portfolio Value: ${{ portfolioValue }}</p>
-  <!-- structural directive = ngfor ng if -->
-  <div *ngFor="let s of stonk.tickers; index as i">
-    <h1>{{ s.ticker }} - ${{ s.day.c }}</h1>
-    <p>cost basis: ${{ allStonksOwnedByUser[i].purchasePrice }}</p>
-    <p>Shares Owned: {{ allStonksOwnedByUser[i].sharesOwned }}</p>
-    <button
-      type="button"
-      class="btn btn-primary"
-      routerLink="/StonkDetails/{{ s.ticker }}"
-    >
-      Click for Deets
-    </button>
+  <div *ngIf="isEmpty">
+    <!-- structural directive = ngfor ng if -->
+    <div *ngFor="let s of stonk.tickers; index as i">
+      <h1>{{ s.ticker }} - ${{ s.day.c }}</h1>
+      <p>cost basis: ${{ allStonksOwnedByUser[i].purchasePrice }}</p>
+      <p>Shares Owned: {{ allStonksOwnedByUser[i].sharesOwned }}</p>
+      <button
+        type="button"
+        class="btn btn-primary"
+        routerLink="/StonkDetails/{{ s.ticker }}"
+      >
+        Click for Deets
+      </button>
+    </div>
+  </div>
+  <div *ngIf="!isEmpty">
+    <p>buy some stocks to get started!</p>
   </div>
 </div>

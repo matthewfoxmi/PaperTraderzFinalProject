@@ -35,10 +35,9 @@ export class LeaderBoardComponent implements OnInit {
     //calls to SQL db and returns the invested stocks as an array
     let allStonksOwnedByUser:InvestedStock[] = [];
     this.investedStockService.getAllInvestedById(user.googleId).subscribe((response:InvestedStock[]) => {
-      
       response.sort((a, b) => a.investedTicker.localeCompare(b.investedTicker))
       //console.log(response)
-      //lines 37-39 grabs the tickers and combines into one string to pass into api for calling those stocks
+      //next 3 lines below grabs the tickers and combines into one string to pass into api for calling those stocks
       let tickers:string = "";
       response.forEach((s:any) => {
         tickers += s.investedTicker+",";
@@ -49,7 +48,6 @@ export class LeaderBoardComponent implements OnInit {
       //ticker string from above is used to call api and return the stock data ordered alphabetically by ticker
       let newLeader:NetWorth = {user:user, netWorth:0}; 
       this.stonkService.getApiStonks(tickers).subscribe((response:Stonk) => {
-        
         let index = 0;
         response.tickers.sort((a, b) => a.ticker.localeCompare(b.ticker))
         allStonksOwnedByUser.forEach((s:any) => {
@@ -59,7 +57,6 @@ export class LeaderBoardComponent implements OnInit {
         })
         this.userService.getUserById(user.googleId).subscribe((response:any) => {
           newLeader.netWorth += response.currentCash;
-          
           // console.log(response.currentCash);
           // this.portfolioValue += this.currentCash;
           newLeader.netWorth = Number(newLeader.netWorth.toFixed(2));
@@ -69,8 +66,6 @@ export class LeaderBoardComponent implements OnInit {
         });
         //console.log(this.portfolioValue);
         //console.log(response)
-        
-
       });
     });
   }
