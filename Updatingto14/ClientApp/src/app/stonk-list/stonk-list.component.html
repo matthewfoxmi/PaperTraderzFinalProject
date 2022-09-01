@@ -14,32 +14,42 @@
 >
   <div
     *ngIf="s.prevDay.c < s.day.c"
-    class="card shadow border border-success m-3 p-3"
+    class="card shadow border border-success m-2 p-3"
   >
-    <h1>{{ s.ticker }} - ${{ s.day.c }}</h1>
+    <div class="card-header">
+      <h1>{{ s.ticker }} - ${{ s.day.c }}</h1>
+    </div>
+
     <button
       type="button"
-      class="btn btn-success col-4 offset-4"
+      class="btn btn-success"
       routerLink="/StonkDetails/{{ s.ticker }}"
     >
       Click for Deets
     </button>
-    <span>+${{ (s.day.c - s.day.o).toFixed(2) }}</span
-    ><span class="material-symbols-outlined"> trending_up </span>
+
+    <div class="card-footer text-muted">
+      <span>+${{ (s.day.c - s.day.o).toFixed(2) }}</span>
+      <span class="material-symbols-outlined"> trending_up </span>
+    </div>
   </div>
   <div
     *ngIf="s.prevDay.c > s.day.c"
-    class="card shadow border border-danger m-3 p-3"
+    class="card shadow border border-danger m-2 p-3"
   >
-    <h1>{{ s.ticker }} - ${{ s.day.c }}</h1>
+    <div class="card-header">
+      <h1>{{ s.ticker }} - ${{ s.day.c }}</h1>
+    </div>
     <button
       type="button"
-      class="btn btn-danger col-4 offset-4"
+      class="btn btn-danger"
       routerLink="/StonkDetails/{{ s.ticker }}"
     >
       Click for Deets
     </button>
-    <span>-${{ (s.day.c - s.day.o).toFixed(2) }}</span>
-    <span id="icon" class="material-symbols-outlined"> trending_down </span>
+    <div class="card-footer text-muted">
+      <span>-${{ (s.day.c - s.day.o).toFixed(2) }}</span>
+      <span id="icon" class="material-symbols-outlined"> trending_down </span>
+    </div>
   </div>
 </div>
