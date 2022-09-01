@@ -12,7 +12,7 @@ import { WatchingService } from '../watching.service';
 })
 export class StonkListComponent implements OnInit {
 
-  stonksList:Stonk = {} as Stonk;
+  stonk:Stonk = {} as Stonk;
   constructor(private stonkService:StonkService, private watchingService:WatchingService, private router:Router) { }
 
   //accesses our SQL database, adds all tickers into singular string to be passed into the api and returns matching stock data
@@ -24,8 +24,8 @@ export class StonkListComponent implements OnInit {
         tickers += s.ticker+",";
       });
       this.stonkService.getApiStonks(tickers).subscribe((response:any) => {
-        this.stonksList = response;
-        this.stonksList.tickers.sort((a, b) => a.ticker.localeCompare(b.ticker))
+        this.stonk = response;
+        this.stonk.tickers.sort((a, b) => a.ticker.localeCompare(b.ticker))
       });
     });
   }

@@ -8,7 +8,7 @@
   <input type="submit" />
 </form>
 <div
-  *ngFor="let s of stonksList.tickers"
+  *ngFor="let s of stonk.tickers"
   class="row col-6 offset-3"
   style="text-align: center"
 >
@@ -24,6 +24,8 @@
     >
       Click for Deets
     </button>
+    <span>+${{ (s.day.c - s.day.o).toFixed(2) }}</span
+    ><span class="material-symbols-outlined"> trending_up </span>
   </div>
   <div
     *ngIf="s.prevDay.c > s.day.c"
@@ -37,5 +39,7 @@
     >
       Click for Deets
     </button>
+    <span>-${{ (s.day.c - s.day.o).toFixed(2) }}</span>
+    <span id="icon" class="material-symbols-outlined"> trending_down </span>
   </div>
 </div>

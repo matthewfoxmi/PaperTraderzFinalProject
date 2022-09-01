@@ -26,7 +26,7 @@
         >
           Click for Deets
         </button>
-        <!-- <i class="fa-solid fa-arrow-trend-up"></i> -->
+        <span id="icon" class="material-symbols-outlined"> trending_up </span>
       </div>
       <div
         *ngIf="s.prevDay.c > s.day.c"
@@ -35,7 +35,7 @@
       >
         <h1>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h1>
         <p>
-          cost basis: ${{ allStonksOwnedByUser[i].purchasePrice.toFixed(2) }}
+          Cost Basis: ${{ allStonksOwnedByUser[i].purchasePrice.toFixed(2) }}
         </p>
         <p>Shares Owned: {{ allStonksOwnedByUser[i].sharesOwned }}</p>
         <button
@@ -45,6 +45,7 @@
         >
           Click for Deets
         </button>
+        <span id="icon" class="material-symbols-outlined"> trending_down </span>
       </div>
     </div>
   </div>
