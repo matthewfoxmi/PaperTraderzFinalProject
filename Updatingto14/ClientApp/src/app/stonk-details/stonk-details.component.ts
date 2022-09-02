@@ -21,6 +21,8 @@ export class StonkDetailsComponent implements OnInit {
   loggedIn: boolean = false;
   addedToWatching:string[] = [];
   ticker:string = "";
+  displayForm:boolean = false;
+
   constructor(private investedStockService:InvestedStockService, private watchingService:WatchingService, private stonkService:StonkService, private route:ActivatedRoute, private authService: SocialAuthService) { }
   //grabs ticker from URL, sends ticker to stock API to pull relevant data
   ngOnInit(): void {
@@ -92,4 +94,9 @@ export class StonkDetailsComponent implements OnInit {
       });
     });
   }
+
+  toggleForm():void{
+    this.displayForm = !this.displayForm;
+  }
+
 }

@@ -54,14 +54,20 @@
   <!-- purchase stock form -->
   <div class="row justify-content-center" style="text-align: center">
     <div class="card col col-sm-6 shadow border border-success m-2 p-2">
-      <form
-        *ngIf="displayStonk.tickers[0].day.c > 0"
-        #purchaseStockForm="ngForm"
-        (ngSubmit)="purchaseStock(purchaseStockForm)"
-      >
-        <input type="number" name="quantity" min="1" ngModel />
-        <button>Purchase</button>
-      </form>
+      <button (click)="toggleForm()">Buy Stock</button>
+      <div class="graybox" *ngIf="displayForm">
+        <div class="form-modal">
+          <form
+            *ngIf="displayStonk.tickers[0].day.c > 0"
+            #purchaseStockForm="ngForm"
+            (ngSubmit)="purchaseStock(purchaseStockForm)"
+          >
+            <input type="number" name="quantity" min="1" ngModel />
+            <button>Purchase</button>
+          </form>
+          <button (click)="toggleForm()">Cancel</button>
+        </div>
+      </div>
     </div>
   </div>
 
