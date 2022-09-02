@@ -1,51 +1,68 @@
-<div *ngIf="loggedIn" style="text-align: center" class="row col-6 offset-3">
-  <div>
-    <div class="card shadow border border-dark m-2 p-2">
+<div *ngIf="loggedIn">
+  <div style="text-align: center" class="row justify-content-center">
+    <div class="card col col-sm-6 shadow border border-dark m-2 p-2">
       <p>{{ user.firstName }} {{ user.lastName }}'s Account</p>
       <p>Current Cash: ${{ currentCash.toFixed(2) }}</p>
       <p>Portfolio Value: ${{ portfolioValue.toFixed(2) }}</p>
     </div>
   </div>
+
   <div *ngIf="isEmpty">
     <!-- structural directive = ngfor ng if -->
-    <div *ngFor="let s of stonk.tickers; index as i">
+    <div
+      *ngFor="let s of stonk.tickers; index as i"
+      class="row justify-content-center"
+      style="text-align: center"
+    >
       <div
         *ngIf="s.prevDay.c < s.day.c"
-        class="card shadow border border-success m-2 p-2"
-        style="text-align: center"
+        class="card col col-sm-6 shadow border border-success m-2 p-2"
       >
-        <h1>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h1>
+        <div class="card-header d-flex flex-row justify-content-around">
+          <h3>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h3>
+          <div>
+            <span>+${{ (s.day.c - s.day.o).toFixed(2) }}</span>
+            <span class="material-symbols-outlined"> trending_up </span>
+          </div>
+        </div>
         <p>
           Cost Basis: ${{ allStonksOwnedByUser[i].purchasePrice.toFixed(2) }}
         </p>
         <p>Shares Owned: {{ allStonksOwnedByUser[i].sharesOwned }}</p>
         <button
           type="button"
-          class="btn btn-success col-4 offset-4"
+          class="btn btn-success"
           routerLink="/StonkDetails/{{ s.ticker }}"
         >
           Click for Deets
         </button>
-        <span id="icon" class="material-symbols-outlined"> trending_up </span>
       </div>
       <div
         *ngIf="s.prevDay.c > s.day.c"
-        class="card shadow border border-danger m-2 p-2"
-        style="text-align: center"
+        class="card col col-sm-6 shadow border border-danger m-2 p-2"
       >
-        <h1>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h1>
-        <p>
-          Cost Basis: ${{ allStonksOwnedByUser[i].purchasePrice.toFixed(2) }}
-        </p>
-        <p>Shares Owned: {{ allStonksOwnedByUser[i].sharesOwned }}</p>
-        <button
-          type="button"
-          class="btn btn-danger col-4 offset-4"
-          routerLink="/StonkDetails/{{ s.ticker }}"
-        >
-          Click for Deets
-        </button>
-        <span id="icon" class="material-symbols-outlined"> trending_down </span>
+        <div class="card-header d-flex flex-row justify-content-around">
+          <h3>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h3>
+          <div>
+            <span>+${{ (s.day.c - s.day.o).toFixed(2) }}</span>
+            <span class="material-symbols-outlined"> trending_up </span>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Cost Basis: ${{ allStonksOwnedByUser[i].purchasePrice.toFixed(2) }}
+          </li>
+          <li class="list-group-item">
+            Shares Owned: {{ allStonksOwnedByUser[i].sharesOwned }}
+          </li>
+          <button
+            type="button"
+            class="btn btn-danger"
+            routerLink="/StonkDetails/{{ s.ticker }}"
+          >
+            Click for Deets
+          </button>
+        </ul>
       </div>
     </div>
   </div>
