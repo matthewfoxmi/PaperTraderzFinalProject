@@ -22,7 +22,7 @@
 >
   <div
     *ngIf="s.day.o < s.day.c"
-    class="card col col-sm-6 shadow border border-success m-2 p-2"
+    class="card col col-sm-6 shadow border border-success m-2 p-0"
   >
     <div class="card-header">
       <h3>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h3>
@@ -30,7 +30,7 @@
 
     <button
       type="button"
-      class="btn btn-success"
+      class="btn btn-success m-3"
       routerLink="/StonkDetails/{{ s.ticker }}"
     >
       Click for Deets
@@ -43,14 +43,14 @@
   </div>
   <div
     *ngIf="s.day.o > s.day.c"
-    class="card col col-sm-6 shadow border border-danger m-2 p-2"
+    class="card col col-sm-6 shadow border border-danger m-2 p-0"
   >
     <div class="card-header">
       <h3>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h3>
     </div>
     <button
       type="button"
-      class="btn btn-danger"
+      class="btn btn-danger m-3"
       routerLink="/StonkDetails/{{ s.ticker }}"
     >
       Click for Deets

@@ -77,8 +77,10 @@ export class StonkDetailsComponent implements OnInit {
       //console.log(currentPrice);
       this.investedStockService.purchaseStock(ticker, currentPrice, form.form.value.quantity).subscribe((response:InvestedStock) => {
         //console.log(response);
+        this.togglePurchaseForm();
       });
     });
+    
   }
 
   sellStock(form:NgForm):any{
@@ -92,8 +94,10 @@ export class StonkDetailsComponent implements OnInit {
       //passes in the ticker, current price (obtained above) and quantity of stocks to sell from form
       this.investedStockService.sellStock(ticker, currentPrice, form.form.value.quantity).subscribe((response:InvestedStock) => {
         console.log(response);
+        this.toggleSellForm();
       });
     });
+    
   }
 
   togglePurchaseForm():void{

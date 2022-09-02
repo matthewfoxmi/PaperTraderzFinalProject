@@ -41,11 +41,7 @@
   <div class="row justify-content-center" style="text-align: center">
     <div class="card col col-sm-6 shadow border border-success m-2 p-2">
       <button (click)="addWatchingStock()" *ngIf="!getWatching()">Watch</button>
-      <button
-        (click)="removeWatchingStock()"
-        *ngIf="getWatching()"
-        routerLink="/WatchList"
-      >
+      <button (click)="removeWatchingStock()" *ngIf="getWatching()">
         Stop Watching
       </button>
     </div>
