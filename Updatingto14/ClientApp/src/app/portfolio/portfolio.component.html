@@ -22,7 +22,9 @@
           <h3>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h3>
           <div>
             <span>+${{ (s.day.c - s.day.o).toFixed(2) }}</span>
-            <span class="material-symbols-outlined"> trending_up </span>
+            <span id="icon" class="material-symbols-outlined">
+              trending_up
+            </span>
           </div>
         </div>
         <p>
@@ -45,7 +47,9 @@
           <h3>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h3>
           <div>
             <span>-${{ (s.day.o - s.day.c).toFixed(2) }}</span>
-            <span class="material-symbols-outlined"> trending_down </span>
+            <span id="icon" class="material-symbols-outlined">
+              trending_down
+            </span>
           </div>
         </div>
         <ul class="list-group list-group-flush">
