@@ -1,3 +1,50 @@
-<div *ngFor="let u of leaders; index as i">
-  <p>{{ i + 1 }} {{ u.user.profileName }} ${{ u.netWorth }}</p>
+<div
+  *ngFor="let u of leaders; index as i"
+  class="row justify-content-center"
+  style="text-align: center"
+>
+  <div
+    class="card col col-sm-6 shadow border border-warning m-2 p-2"
+    *ngIf="i == 0"
+  >
+    <p>
+      {{ i + 1 }}. <u>{{ u.user.profileName }}</u> - ${{ u.netWorth
+      }}<img
+        height="50px"
+        src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/468583d21fd7248.png"
+      />
+    </p>
+  </div>
+  <div
+    class="card col col-sm-6 shadow border border-secondary m-2 p-2"
+    *ngIf="i == 1"
+  >
+    <p>
+      {{ i + 1 }}. <u>{{ u.user.profileName }}</u> - ${{ u.netWorth
+      }}<img
+        height="45px"
+        src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d07a8f12cd136e6.png"
+      />
+    </p>
+  </div>
+  <div
+    class="card col col-sm-6 shadow border border-danger m-2 p-2"
+    *ngIf="i == 2"
+  >
+    <p>
+      {{ i + 1 }}. <u>{{ u.user.profileName }}</u> - ${{ u.netWorth
+      }}<img
+        height="50px"
+        src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/829134d3159b00b.png"
+      />
+    </p>
+  </div>
+  <div
+    class="card col col-sm-6 shadow border border-primary m-2 p-2"
+    *ngIf="i >= 3"
+  >
+    <p>
+      {{ i + 1 }}. <u>{{ u.user.profileName }}</u> - ${{ u.netWorth }}
+    </p>
+  </div>
 </div>
