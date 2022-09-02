@@ -1,23 +1,31 @@
-<form #searchStockForm="ngForm" (ngSubmit)="searchForStock(searchStockForm)">
-  <input
-    type="text"
-    name="searchedStock"
-    placeholder="Search for a stock"
-    ngModel
-  />
-  <input type="submit" />
-</form>
+<div class="row justify-content-center" style="text-align: center">
+  <div class="col 6">
+    <form
+      #searchStockForm="ngForm"
+      (ngSubmit)="searchForStock(searchStockForm)"
+    >
+      <input
+        type="text"
+        name="searchedStock"
+        placeholder="Search for a stock"
+        ngModel
+      />
+      <input type="submit" />
+    </form>
+  </div>
+</div>
+
 <div
   *ngFor="let s of stonk.tickers"
-  class="row col-6 offset-3"
+  class="row justify-content-center"
   style="text-align: center"
 >
   <div
     *ngIf="s.prevDay.c < s.day.c"
-    class="card shadow border border-success m-2 p-3"
+    class="card col col-sm-6 shadow border border-success m-2 p-2"
   >
     <div class="card-header">
-      <h1>{{ s.ticker }} - ${{ s.day.c }}</h1>
+      <h3>{{ s.ticker }} - ${{ s.day.c }}</h3>
     </div>
 
     <button
@@ -35,7 +43,7 @@
   </div>
   <div
     *ngIf="s.prevDay.c > s.day.c"
-    class="card shadow border border-danger m-2 p-3"
+    class="card col col-sm-6 shadow border border-danger m-2 p-2"
   >
     <div class="card-header">
       <h1>{{ s.ticker }} - ${{ s.day.c }}</h1>
