@@ -54,8 +54,8 @@
   <!-- purchase stock form -->
   <div class="row justify-content-center" style="text-align: center">
     <div class="card col col-sm-6 shadow border border-success m-2 p-2">
-      <button (click)="toggleForm()">Buy Stock</button>
-      <div class="graybox" *ngIf="displayForm">
+      <button (click)="togglePurchaseForm()">Buy Stock</button>
+      <div class="graybox" *ngIf="displayPurchaseForm">
         <div class="form-modal">
           <form
             *ngIf="displayStonk.tickers[0].day.c > 0"
@@ -65,7 +65,7 @@
             <input type="number" name="quantity" min="1" ngModel />
             <button>Purchase</button>
           </form>
-          <button (click)="toggleForm()">Cancel</button>
+          <button (click)="togglePurchaseForm()">Cancel</button>
         </div>
       </div>
     </div>
@@ -74,14 +74,20 @@
   <!-- sell stock form -->
   <div class="row justify-content-center" style="text-align: center">
     <div class="card col col-sm-6 shadow border border-success m-2 p-2">
-      <form
-        *ngIf="displayStonk.tickers[0].day.c > 0"
-        #sellStockForm="ngForm"
-        (ngSubmit)="sellStock(sellStockForm)"
-      >
-        <input type="number" name="quantity" min="1" ngModel />
-        <button>Sell</button>
-      </form>
+      <button (click)="toggleSellForm()">Sell Stock</button>
+      <div class="graybox" *ngIf="displaySellForm">
+        <div class="form-modal">
+          <form
+            *ngIf="displayStonk.tickers[0].day.c > 0"
+            #sellStockForm="ngForm"
+            (ngSubmit)="sellStock(sellStockForm)"
+          >
+            <input type="number" name="quantity" min="1" ngModel />
+            <button>Sell</button>
+          </form>
+          <button (click)="toggleSellForm()">Cancel</button>
+        </div>
+      </div>
     </div>
   </div>
 
