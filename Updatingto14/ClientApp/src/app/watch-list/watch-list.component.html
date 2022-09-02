@@ -4,7 +4,7 @@
   class="row justify-content-center"
 >
   <div
-    *ngIf="s.prevDay.c < s.day.c"
+    *ngIf="s.day.o < s.day.c"
     class="card col col-sm-6 shadow border border-success m-2 p-2"
   >
     <div class="card-header">
@@ -23,7 +23,7 @@
     </div>
   </div>
   <div
-    *ngIf="s.prevDay.c > s.day.c"
+    *ngIf="s.day.o > s.day.c"
     class="card col col-sm-6 shadow border border-success m-2 p-2"
   >
     <div class="card-header">
@@ -37,7 +37,7 @@
       Click for Deets
     </button>
     <div class="card-footer text-muted">
-      <span>+${{ (s.day.c - s.day.o).toFixed(2) }}</span>
+      <span>-${{ (s.day.o - s.day.c).toFixed(2) }}</span>
       <span class="material-symbols-outlined"> trending_down</span>
     </div>
   </div>

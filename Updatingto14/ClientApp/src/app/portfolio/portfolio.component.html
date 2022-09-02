@@ -15,14 +15,16 @@
       style="text-align: center"
     >
       <div
-        *ngIf="s.prevDay.c < s.day.c"
+        *ngIf="s.day.o < s.day.c"
         class="card col col-sm-6 shadow border border-success m-2 p-2"
       >
         <div class="card-header d-flex flex-row justify-content-around">
           <h3>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h3>
           <div>
             <span>+${{ (s.day.c - s.day.o).toFixed(2) }}</span>
-            <span class="material-symbols-outlined"> trending_up </span>
+            <span id="icon" class="material-symbols-outlined">
+              trending_up
+            </span>
           </div>
         </div>
         <p>
@@ -38,14 +40,16 @@
         </button>
       </div>
       <div
-        *ngIf="s.prevDay.c > s.day.c"
+        *ngIf="s.day.o > s.day.c"
         class="card col col-sm-6 shadow border border-danger m-2 p-2"
       >
         <div class="card-header d-flex flex-row justify-content-around">
           <h3>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h3>
           <div>
-            <span>+${{ (s.day.c - s.day.o).toFixed(2) }}</span>
-            <span class="material-symbols-outlined"> trending_up </span>
+            <span>-${{ (s.day.o - s.day.c).toFixed(2) }}</span>
+            <span id="icon" class="material-symbols-outlined">
+              trending_down
+            </span>
           </div>
         </div>
         <ul class="list-group list-group-flush">

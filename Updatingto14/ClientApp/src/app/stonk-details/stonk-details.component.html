@@ -28,7 +28,7 @@
         }}
         <br />
         Change from yesterday's price: ${{
-          displayStonk.tickers[0].todaysChange
+          displayStonk.tickers[0].todaysChange.toFixed(2)
         }}
         which is: {{ displayStonk.tickers[0].todaysChangePerc }}%
         <br />
