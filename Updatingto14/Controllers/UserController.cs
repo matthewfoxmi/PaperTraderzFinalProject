@@ -44,5 +44,14 @@ namespace Updatingto14.Controllers
                 return newUser;
             }
         }
+        [HttpPut("editProfile")]
+        public User editProfile(string profileName, string googleId)
+        {
+            User user = context.Users.FirstOrDefault(g => g.GoogleId == googleId);
+            user.ProfileName = profileName;
+            context.Users.Update(user);
+            context.SaveChanges();
+            return user;
+        }
     }
 }

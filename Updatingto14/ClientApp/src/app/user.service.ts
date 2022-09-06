@@ -22,4 +22,7 @@ export class UserService {
   createNewUser(id:string):any{
     return this.http.post(`${this.baseUrl}${this.endpoint}/createNewUser?googleId=${id}&profileName=${UserService.user.firstName}_${UserService.user.lastName}`, {})
   }
+  editProfile(profileName:string):any{
+    return this.http.put(`${this.baseUrl}${this.endpoint}/editProfile?profileName=${profileName}&googleId=${UserService.user.id}`, {})
+  }
 }

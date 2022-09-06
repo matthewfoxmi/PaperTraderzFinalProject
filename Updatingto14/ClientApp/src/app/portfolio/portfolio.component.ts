@@ -1,5 +1,6 @@
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { User } from 'oidc-client';
 import { InvestedStock } from '../invested-stock';
 import { InvestedStockService } from '../invested-stock.service';
@@ -24,6 +25,8 @@ export class PortfolioComponent implements OnInit {
   portfolioValue:number = 0;
   currentCash:number = 0;
   isEmpty:boolean = false;
+  editMode:boolean = false;
+  profileName:string = "";
 
   constructor(private userService:UserService, private authService: SocialAuthService, private investedStockService:InvestedStockService, private stonkService:StonkService) { }
   // when a user logs in, the loggedin bool gets turned to true.  We can use this to only display portfolio when someone is logged in
@@ -57,6 +60,7 @@ export class PortfolioComponent implements OnInit {
             })
             this.userService.getUserById(this.user.id).subscribe((response:any) => {
               this.currentCash = response.currentCash;
+              this.profileName = response.profileName;
               console.log(response.currentCash);
               this.portfolioValue += this.currentCash;
               this.portfolioValue = Number(this.portfolioValue.toFixed(2));
@@ -67,14 +71,24 @@ export class PortfolioComponent implements OnInit {
           }else{
             this.isEmpty = false;
             this.userService.getUserById(this.user.id).subscribe((response:any) => {
+              
               this.currentCash = response.currentCash;
-              console.log(response.currentCash);
+              console.log(response);
               this.portfolioValue += this.currentCash;
               this.portfolioValue = Number(this.portfolioValue.toFixed(2));
             });
           }
         });
       });
+    })
+  }
+  toggleEdit():void{
+    this.editMode = !this.editMode;
+  }
+  saveChanges(form:NgForm):void{
+    let profileName = form.form.value.profileName;
+    this.userService.editProfile(profileName).subscribe((response:User) => {
+      console.log(response);
     })
   }
 }
