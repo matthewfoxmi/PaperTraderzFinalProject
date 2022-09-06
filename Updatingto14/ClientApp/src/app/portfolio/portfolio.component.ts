@@ -75,7 +75,8 @@ export class PortfolioComponent implements OnInit {
           }else{
             this.isEmpty = false;
             this.userService.getUserById(this.user.id).subscribe((response:any) => {
-              
+              this.profileName = response.profileName;
+              this.profilePicture = response.userIcon;
               this.currentCash = response.currentCash;
               console.log(response);
               this.portfolioValue += this.currentCash;
