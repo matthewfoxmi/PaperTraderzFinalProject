@@ -1,23 +1,52 @@
 <div *ngIf="loggedIn">
   <div style="text-align: center" class="row justify-content-center">
     <div class="card col col-sm-6 shadow border border-dark m-2 p-2">
-      <span *ngIf="!editMode">
+      <span
+        *ngIf="editModeUserName == false && editModeProfilePicture == false"
+      >
+        <img height="100px" src="{{ profilePicture }}" />
         <p>{{ profileName }}</p>
         <p>Current Cash: ${{ currentCash.toFixed(2) }}</p>
         <p>Portfolio Value: ${{ portfolioValue.toFixed(2) }}</p>
-        <button (click)="toggleEdit()">Edit Profile</button>
+        <button (click)="toggleEditUserName()">Edit Username</button>
+        <button (click)="toggleEditProfilePicture()">
+          Edit Profile Picture
+        </button>
       </span>
-      <span *ngIf="editMode">
-        <form #SaveChanges="ngForm" (ngSubmit)="saveChanges(SaveChanges)">
+      <span *ngIf="editModeUserName">
+        <form
+          #SaveChanges="ngForm"
+          (ngSubmit)="saveChanges(SaveChanges)"
+          (ngSubmit)="toggleEditUserName()"
+        >
           <input
             type="text"
             name="profileName"
             placeholder="{{ profileName }}"
             ngModel
           />
-          <button>Save Changes</button>
+          <button>Update Username</button>
         </form>
-        <button (click)="toggleEdit()">Back to Profile</button>
+        <span *ngIf="userNameExists">
+          This username is taken. Please pick a different username.
+        </span>
+        <button (click)="toggleEditUserName()">Back to Profile</button>
+      </span>
+      <span *ngIf="editModeProfilePicture">
+        <form
+          #saveNewProfilePicture="ngForm"
+          (ngSubmit)="saveNewProfilePic(saveNewProfilePicture)"
+          (ngSubmit)="toggleEditProfilePicture()"
+        >
+          <input
+            type="text"
+            name="profilePicture"
+            placeholder="Image URL"
+            ngModel
+          />
+          <button>Update Profile Picture</button>
+        </form>
+        <button (click)="toggleEditProfilePicture()">Back to Profile</button>
       </span>
     </div>
   </div>

@@ -1,13 +1,13 @@
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { User } from 'oidc-client';
+//import { User } from 'oidc-client';
 import { InvestedStock } from '../invested-stock';
 import { InvestedStockService } from '../invested-stock.service';
 import { NavMenuComponent } from '../nav-menu/nav-menu.component';
 import { Stonk } from '../stonk';
 import { StonkService } from '../stonk.service';
-// import { User } from '../user';
+import { User } from '../user';
 import { UserService } from '../user.service';
 import { WatchingService } from '../watching.service';
 
@@ -25,8 +25,11 @@ export class PortfolioComponent implements OnInit {
   portfolioValue:number = 0;
   currentCash:number = 0;
   isEmpty:boolean = false;
-  editMode:boolean = false;
+  editModeUserName:boolean = false;
+  editModeProfilePicture:boolean = false;
   profileName:string = "";
+  userNameExists: boolean = false;
+  profilePicture:string = "";
 
   constructor(private userService:UserService, private authService: SocialAuthService, private investedStockService:InvestedStockService, private stonkService:StonkService) { }
   // when a user logs in, the loggedin bool gets turned to true.  We can use this to only display portfolio when someone is logged in
@@ -61,6 +64,7 @@ export class PortfolioComponent implements OnInit {
             this.userService.getUserById(this.user.id).subscribe((response:any) => {
               this.currentCash = response.currentCash;
               this.profileName = response.profileName;
+              this.profilePicture = response.userIcon;
               console.log(response.currentCash);
               this.portfolioValue += this.currentCash;
               this.portfolioValue = Number(this.portfolioValue.toFixed(2));
@@ -82,12 +86,28 @@ export class PortfolioComponent implements OnInit {
       });
     })
   }
-  toggleEdit():void{
-    this.editMode = !this.editMode;
+  toggleEditUserName():void{
+    this.editModeUserName = !this.editModeUserName;
+  }
+  toggleEditProfilePicture():void{
+    this.editModeProfilePicture = !this.editModeProfilePicture;
   }
   saveChanges(form:NgForm):void{
-    let profileName = form.form.value.profileName;
-    this.userService.editProfile(profileName).subscribe((response:User) => {
+    // let profileName = form.form.value.profileName;
+    this.userService.editProfile(form.form.value.profileName).subscribe((response:User) => {
+      if(response == null){
+        this.userNameExists = true;
+      }
+      else{
+        this.userNameExists = false;
+        this.profileName = response.profileName;
+      }
+      console.log(response);
+    })
+  }
+  saveNewProfilePic(form:NgForm):void{
+    this.userService.editProfilePicture(form.form.value.profilePicture).subscribe((response:User) => {
+      this.profilePicture = response.userIcon;
       console.log(response);
     })
   }

@@ -44,14 +44,32 @@ namespace Updatingto14.Controllers
                 return newUser;
             }
         }
-        [HttpPut("editProfile")]
+        [HttpPatch("editProfile")]
         public User editProfile(string profileName, string googleId)
-        {
+        {            
+            if (context.Users.Any(p => p.ProfileName == profileName))
+            {
+                return null;
+            }
+            else
+            {
+                User user = context.Users.FirstOrDefault(g => g.GoogleId == googleId);
+                user.ProfileName = profileName;
+                context.Users.Update(user);
+                context.SaveChanges();
+                return user;
+            }            
+        }
+
+        [HttpPatch("editProfilePicture")]
+        public User editProfilePicture(string profilePictureUrl, string googleId)
+        {            
             User user = context.Users.FirstOrDefault(g => g.GoogleId == googleId);
-            user.ProfileName = profileName;
+            user.UserIcon = profilePictureUrl;
             context.Users.Update(user);
             context.SaveChanges();
-            return user;
+            return user;            
         }
+
     }
 }

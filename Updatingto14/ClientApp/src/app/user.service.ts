@@ -23,6 +23,10 @@ export class UserService {
     return this.http.post(`${this.baseUrl}${this.endpoint}/createNewUser?googleId=${id}&profileName=${UserService.user.firstName}_${UserService.user.lastName}`, {})
   }
   editProfile(profileName:string):any{
-    return this.http.put(`${this.baseUrl}${this.endpoint}/editProfile?profileName=${profileName}&googleId=${UserService.user.id}`, {})
+    return this.http.patch(`${this.baseUrl}${this.endpoint}/editProfile?profileName=${profileName}&googleId=${UserService.user.id}`, {})
+  }
+
+  editProfilePicture(profilePictureUrl:string):any{
+    return this.http.patch(`${this.baseUrl}${this.endpoint}/editProfilePicture?profilePictureUrl=${profilePictureUrl}&googleId=${UserService.user.id}`, {})
   }
 }
