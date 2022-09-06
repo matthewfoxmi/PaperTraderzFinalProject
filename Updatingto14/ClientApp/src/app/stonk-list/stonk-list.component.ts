@@ -17,6 +17,7 @@ export class StonkListComponent implements OnInit {
   stonk:Stonk = {} as Stonk;
   user: SocialUser = {} as SocialUser;
   loggedIn: boolean = false;
+  addedToWatching:string[] = [];
 
   constructor(private authService: SocialAuthService, private userService:UserService, private stonkService:StonkService, private watchingService:WatchingService, private router:Router) { }
 
@@ -41,9 +42,33 @@ export class StonkListComponent implements OnInit {
     });
   }
 
+  getWatching(ticker:string):boolean {
+    if(this.addedToWatching.includes(ticker)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  
+//Function to add a stock to our DB.  takes ticker from URL and passes it back to C# side
+  addWatchingStock(ticker:string):any{
+    this.watchingService.addWatchingStock(ticker).subscribe((response:any) => {
+      //console.log(response);
+      this.addedToWatching.push(ticker);
+    });
+  }
+//Removes a stock from DB.  Takes ticker from URL again, and sends back the ticker.  UserID is also sent back to C# side from service
+  removeWatchingStock(ticker:string):any{
+    this.watchingService.removeWatchingStock(ticker).subscribe((response:any) => {
+      //console.log(response);
+      let index = this.addedToWatching.findIndex(x => x == ticker);
+      this.addedToWatching.splice(index,1);
+  });
+}  
+
   searchForStock(form:NgForm):any{
     let search = form.form.value.searchedStock;
     this.router.navigate([`StonkDetails/${search}`])
   }  
-
+  
 }

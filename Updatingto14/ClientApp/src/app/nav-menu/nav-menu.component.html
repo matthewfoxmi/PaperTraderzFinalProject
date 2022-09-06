@@ -19,25 +19,38 @@
         class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
         [ngClass]="{ show: isExpanded }"
       >
-        <ul *ngIf="loggedIn" class="navbar-nav flex-grow">
+        <ul class="navbar-nav flex-grow">
           <li
+            *ngIf="loggedIn"
             class="nav-item"
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <a class="nav-link text-dark" [routerLink]="['/']">Portfolio</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li
+            *ngIf="loggedIn"
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+          >
             <a class="nav-link text-dark" [routerLink]="['/Stonks']"
               >Stonks List</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li
+            *ngIf="loggedIn"
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+          >
             <a class="nav-link text-dark" [routerLink]="['/WatchList']"
               >Watching</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li
+            *ngIf="loggedIn"
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+          >
             <a class="nav-link text-dark" [routerLink]="['/Leaderboard']"
               >Leaderboard</a
             >

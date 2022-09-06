@@ -28,14 +28,31 @@
       <div class="card-header">
         <h3>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h3>
       </div>
-
-      <button
-        type="button"
-        class="btn btn-success m-3"
-        routerLink="/StonkDetails/{{ s.ticker }}"
-      >
-        Click for Deets
-      </button>
+      <div>
+        <button
+          type="button"
+          class="btn btn-success m-2"
+          routerLink="/StonkDetails/{{ s.ticker }}"
+        >
+          Click for Deets
+        </button>
+        <button
+          (click)="addWatchingStock(s.ticker)"
+          *ngIf="!getWatching(s.ticker)"
+          type="button"
+          class="btn btn-secondary"
+        >
+          Watch
+        </button>
+        <button
+          (click)="removeWatchingStock(s.ticker)"
+          *ngIf="getWatching(s.ticker)"
+          type="button"
+          class="btn btn-light"
+        >
+          Watching
+        </button>
+      </div>
 
       <div class="card-footer text-muted">
         <span>+${{ (s.day.c - s.day.o).toFixed(2) }}</span>
@@ -49,13 +66,32 @@
       <div class="card-header">
         <h3>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h3>
       </div>
-      <button
-        type="button"
-        class="btn btn-danger m-3"
-        routerLink="/StonkDetails/{{ s.ticker }}"
-      >
-        Click for Deets
-      </button>
+      <div>
+        <button
+          type="button"
+          class="btn btn-danger m-2"
+          routerLink="/StonkDetails/{{ s.ticker }}"
+        >
+          Click for Deets
+        </button>
+        <button
+          (click)="addWatchingStock(s.ticker)"
+          *ngIf="!getWatching(s.ticker)"
+          type="button"
+          class="btn btn-secondary"
+        >
+          Watch
+        </button>
+        <button
+          (click)="removeWatchingStock(s.ticker)"
+          *ngIf="getWatching(s.ticker)"
+          type="button"
+          class="btn btn-light"
+        >
+          Watching
+        </button>
+      </div>
+
       <div class="card-footer text-muted">
         <span>-${{ (s.day.o - s.day.c).toFixed(2) }}</span>
         <span id="icon" class="material-symbols-outlined"> trending_down </span>
