@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Updatingto14.Models;
 
@@ -120,7 +119,13 @@ namespace Updatingto14.Controllers
 
         }
 
-
+        [HttpGet("GetSharesOwned")]
+        public InvestedStock GetSharesOwned(string ticker, string googleId)
+        {
+            User user = context.Users.FirstOrDefault(u => u.GoogleId == googleId);
+            InvestedStock stock = context.InvestedStocks.FirstOrDefault(x => x.UserId == user.Id && x.InvestedTicker == ticker);
+            return stock;
+        }
 
     }
 }

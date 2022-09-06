@@ -28,5 +28,7 @@ export class InvestedStockService {
     return this.http.get(`${this.baseUrl}${this.endpoint}/GetAllInvested?googleId=${id}`);
   }
 
-
+  getSharesOwned(ticker:string):any{
+    return this.http.get(`${this.baseUrl}${this.endpoint}/GetSharesOwned?ticker=${ticker}&googleId=${UserService.user.id}`)
+  }
 }

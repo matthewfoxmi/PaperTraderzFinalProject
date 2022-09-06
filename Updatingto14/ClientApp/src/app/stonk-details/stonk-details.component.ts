@@ -24,6 +24,7 @@ export class StonkDetailsComponent implements OnInit {
   ticker:string = "";
   displayPurchaseForm:boolean = false;
   displaySellForm:boolean = false;
+  sharesOwned:number = 0;
 
   constructor(private userService:UserService, private investedStockService:InvestedStockService, private watchingService:WatchingService, private stonkService:StonkService, private route:ActivatedRoute, private authService: SocialAuthService) { }
   //grabs ticker from URL, sends ticker to stock API to pull relevant data
@@ -43,7 +44,11 @@ export class StonkDetailsComponent implements OnInit {
     this.watchingService.getAllWatchingStocks().subscribe((response:any) => {
       this.addedToWatching = response;
       //console.log(response);      
-    })    
+    }) 
+    this.investedStockService.getSharesOwned(this.ticker).subscribe((response:InvestedStock) => {
+      console.log(response)
+      this.sharesOwned = response.sharesOwned
+    })   
 
   }
   //checks if the addedtowatching array contains the ticker, if so return true
