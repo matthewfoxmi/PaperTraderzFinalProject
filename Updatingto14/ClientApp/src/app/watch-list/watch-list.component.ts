@@ -1,6 +1,8 @@
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { Stonk } from '../stonk';
 import { StonkService } from '../stonk.service';
+import { UserService } from '../user.service';
 import { WatchingService } from '../watching.service';
 
 @Component({
@@ -11,10 +13,18 @@ import { WatchingService } from '../watching.service';
 export class WatchListComponent implements OnInit {
   isEmpty:boolean = false;
   stonk:Stonk = {} as Stonk;
-  constructor(private stonkService: StonkService, private watchingService: WatchingService) { }
+  user: SocialUser = {} as SocialUser;
+  loggedIn: boolean = false;
+  constructor(private stonkService: StonkService, private watchingService: WatchingService, private userService:UserService, private authService: SocialAuthService) { }
 
   //accesses SQL database table for all watched stocks and pulls from api
   ngOnInit(): void {
+    //used to hide components if user is not logged in
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      UserService.user.id = user.id;
+      this.loggedIn = (user != null);
+    });
     this.watchingService.getAllWatchingStocks().subscribe((response:any[]) => {
       let allStonks = response;
       console.log(response);

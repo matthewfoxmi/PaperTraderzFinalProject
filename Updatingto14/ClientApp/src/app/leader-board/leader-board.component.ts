@@ -1,4 +1,4 @@
-import { SocialAuthService } from '@abacritt/angularx-social-login';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { InvestedStock } from '../invested-stock';
 import { InvestedStockService } from '../invested-stock.service';
@@ -18,10 +18,19 @@ export class LeaderBoardComponent implements OnInit {
   users:User[] = [];
   leaders:NetWorth[] = [];
   rank:number = 0;
+  user: SocialUser = {} as SocialUser;
+  loggedIn: boolean = false;
   constructor(private userService:UserService, private authService: SocialAuthService, private investedStockService:InvestedStockService, private stonkService:StonkService) { }
 
   //brings in user data from SQL database and on C# side they are sorted by total portfolio value
   ngOnInit(): void {
+
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      UserService.user.id = user.id;
+      this.loggedIn = (user != null);
+    });
+
     this.userService.getAllUsers().subscribe((response:User[]) => {
       this.users = response;
       this.users.forEach(u => {

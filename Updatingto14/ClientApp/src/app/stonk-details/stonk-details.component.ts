@@ -6,6 +6,7 @@ import { InvestedStock } from '../invested-stock';
 import { InvestedStockService } from '../invested-stock.service';
 import { Stonk } from '../stonk';
 import { StonkService } from '../stonk.service';
+import { UserService } from '../user.service';
 import { WatchingService } from '../watching.service';
 
 @Component({
@@ -24,9 +25,15 @@ export class StonkDetailsComponent implements OnInit {
   displayPurchaseForm:boolean = false;
   displaySellForm:boolean = false;
 
-  constructor(private investedStockService:InvestedStockService, private watchingService:WatchingService, private stonkService:StonkService, private route:ActivatedRoute, private authService: SocialAuthService) { }
+  constructor(private userService:UserService, private investedStockService:InvestedStockService, private watchingService:WatchingService, private stonkService:StonkService, private route:ActivatedRoute, private authService: SocialAuthService) { }
   //grabs ticker from URL, sends ticker to stock API to pull relevant data
   ngOnInit(): void {
+
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      UserService.user.id = user.id;
+      this.loggedIn = (user != null);
+    });
     let params = this.route.snapshot.paramMap;
     this.ticker = String(params.get("ticker"));
     this.stonkService.getApiStonks(this.ticker).subscribe((response:Stonk) => {

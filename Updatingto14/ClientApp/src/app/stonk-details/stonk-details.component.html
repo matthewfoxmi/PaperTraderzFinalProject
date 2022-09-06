@@ -1,100 +1,104 @@
-<!--stonk not found-->
-<div *ngIf="displayStonk.tickers.length == 0">
-  <div class="row justify-content-center" style="text-align: center">
-    <div class="card col col-sm-6 shadow border border-success m-2 p-2">
-      <p>stonk not found</p>
-      <button routerLink="/Stonks">Find a real stock</button>
-    </div>
-  </div>
-</div>
-
-<!--stonk deets :)  -->
-<div *ngIf="displayStonk.tickers.length != 0">
-  <!-- stock info -->
-  <div class="row justify-content-center" style="text-align: center">
-    <div class="card col col-sm-6 shadow border border-success m-2 p-2">
-      <h2>
-        {{ displayStonk.tickers[0].ticker }}
-        <br />
-        Current Price: ${{ displayStonk.tickers[0].day.c }}
-        <br />
-        Opening Price: ${{ displayStonk.tickers[0].day.o }}
-        <br />
-        Today's change:
-        {{
-          (
-            displayStonk.tickers[0].day.c - displayStonk.tickers[0].day.o
-          ).toFixed(2)
-        }}
-        <br />
-        Change from yesterday's price: ${{
-          displayStonk.tickers[0].todaysChange.toFixed(2)
-        }}
-        which is: {{ displayStonk.tickers[0].todaysChangePerc }}%
-        <br />
-        Shares Owned: (don't forget to add method)<!-- put method here -->
-      </h2>
-    </div>
-  </div>
-
-  <!-- add/remove watching stock button -->
-  <div class="row justify-content-center" style="text-align: center">
-    <div class="card col col-sm-6 shadow border border-success m-2 p-2">
-      <button (click)="addWatchingStock()" *ngIf="!getWatching()">Watch</button>
-      <button (click)="removeWatchingStock()" *ngIf="getWatching()">
-        Stop Watching
-      </button>
-    </div>
-  </div>
-
-  <!-- purchase stock form -->
-  <div class="row justify-content-center" style="text-align: center">
-    <div class="card col col-sm-6 shadow border border-success m-2 p-2">
-      <button (click)="togglePurchaseForm()">Buy Stock</button>
-      <div class="graybox" *ngIf="displayPurchaseForm">
-        <div class="form-modal">
-          <form
-            *ngIf="displayStonk.tickers[0].day.c > 0"
-            #purchaseStockForm="ngForm"
-            (ngSubmit)="purchaseStock(purchaseStockForm)"
-          >
-            <input type="number" name="quantity" min="1" ngModel />
-            <button>Purchase</button>
-          </form>
-          <button (click)="togglePurchaseForm()">Cancel</button>
-        </div>
+<div *ngIf="loggedIn">
+  <!--stonk not found-->
+  <div *ngIf="displayStonk.tickers.length == 0">
+    <div class="row justify-content-center" style="text-align: center">
+      <div class="card col col-sm-6 shadow border border-success m-2 p-2">
+        <p>stonk not found</p>
+        <button routerLink="/Stonks">Find a real stock</button>
       </div>
     </div>
   </div>
 
-  <!-- sell stock form -->
-  <div class="row justify-content-center" style="text-align: center">
-    <div class="card col col-sm-6 shadow border border-success m-2 p-2">
-      <button (click)="toggleSellForm()">Sell Stock</button>
-      <div class="graybox" *ngIf="displaySellForm">
-        <div class="form-modal">
-          <form
-            *ngIf="displayStonk.tickers[0].day.c > 0"
-            #sellStockForm="ngForm"
-            (ngSubmit)="sellStock(sellStockForm)"
-          >
-            <input type="number" name="quantity" min="1" ngModel />
-            <button>Sell</button>
-          </form>
-          <button (click)="toggleSellForm()">Cancel</button>
+  <!--stonk deets :)  -->
+  <div *ngIf="displayStonk.tickers.length != 0">
+    <!-- stock info -->
+    <div class="row justify-content-center" style="text-align: center">
+      <div class="card col col-sm-6 shadow border border-success m-2 p-2">
+        <h2>
+          {{ displayStonk.tickers[0].ticker }}
+          <br />
+          Current Price: ${{ displayStonk.tickers[0].day.c }}
+          <br />
+          Opening Price: ${{ displayStonk.tickers[0].day.o }}
+          <br />
+          Today's change:
+          {{
+            (
+              displayStonk.tickers[0].day.c - displayStonk.tickers[0].day.o
+            ).toFixed(2)
+          }}
+          <br />
+          Change from yesterday's price: ${{
+            displayStonk.tickers[0].todaysChange.toFixed(2)
+          }}
+          which is: {{ displayStonk.tickers[0].todaysChangePerc }}%
+          <br />
+          Shares Owned: (don't forget to add method)<!-- put method here -->
+        </h2>
+      </div>
+    </div>
+
+    <!-- add/remove watching stock button -->
+    <div class="row justify-content-center" style="text-align: center">
+      <div class="card col col-sm-6 shadow border border-success m-2 p-2">
+        <button (click)="addWatchingStock()" *ngIf="!getWatching()">
+          Watch
+        </button>
+        <button (click)="removeWatchingStock()" *ngIf="getWatching()">
+          Stop Watching
+        </button>
+      </div>
+    </div>
+
+    <!-- purchase stock form -->
+    <div class="row justify-content-center" style="text-align: center">
+      <div class="card col col-sm-6 shadow border border-success m-2 p-2">
+        <button (click)="togglePurchaseForm()">Buy Stock</button>
+        <div class="graybox" *ngIf="displayPurchaseForm">
+          <div class="form-modal">
+            <form
+              *ngIf="displayStonk.tickers[0].day.c > 0"
+              #purchaseStockForm="ngForm"
+              (ngSubmit)="purchaseStock(purchaseStockForm)"
+            >
+              <input type="number" name="quantity" min="1" ngModel />
+              <button>Purchase</button>
+            </form>
+            <button (click)="togglePurchaseForm()">Cancel</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- it is not stock time yet!! -->
-  <div
-    *ngIf="displayStonk.tickers[0].day.c == 0"
-    class="row justify-content-center"
-    style="text-align: center"
-  >
-    <div class="card col col-sm-6 shadow border border-success m-2 p-2">
-      <p>Come back later to trade this company</p>
+    <!-- sell stock form -->
+    <div class="row justify-content-center" style="text-align: center">
+      <div class="card col col-sm-6 shadow border border-success m-2 p-2">
+        <button (click)="toggleSellForm()">Sell Stock</button>
+        <div class="graybox" *ngIf="displaySellForm">
+          <div class="form-modal">
+            <form
+              *ngIf="displayStonk.tickers[0].day.c > 0"
+              #sellStockForm="ngForm"
+              (ngSubmit)="sellStock(sellStockForm)"
+            >
+              <input type="number" name="quantity" min="1" ngModel />
+              <button>Sell</button>
+            </form>
+            <button (click)="toggleSellForm()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- it is not stock time yet!! -->
+    <div
+      *ngIf="displayStonk.tickers[0].day.c == 0"
+      class="row justify-content-center"
+      style="text-align: center"
+    >
+      <div class="card col col-sm-6 shadow border border-success m-2 p-2">
+        <p>Come back later to trade this company</p>
+      </div>
     </div>
   </div>
 </div>

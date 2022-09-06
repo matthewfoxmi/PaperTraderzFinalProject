@@ -1,45 +1,47 @@
-<div
-  *ngFor="let s of stonk.tickers"
-  style="text-align: center"
-  class="row justify-content-center"
->
+<div *ngIf="loggedIn">
   <div
-    *ngIf="s.day.o < s.day.c"
-    class="card col col-sm-6 shadow border border-success m-2 p-0"
+    *ngFor="let s of stonk.tickers"
+    style="text-align: center"
+    class="row justify-content-center"
   >
-    <div class="card-header">
-      <h3>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h3>
-    </div>
-    <button
-      type="button"
-      class="btn btn-success m-3"
-      routerLink="/StonkDetails/{{ s.ticker }}"
+    <div
+      *ngIf="s.day.o < s.day.c"
+      class="card col col-sm-6 shadow border border-success m-2 p-0"
     >
-      Click for Deets
-    </button>
-    <div class="card-footer text-muted">
-      <span>+${{ (s.day.c - s.day.o).toFixed(2) }}</span>
-      <span id="icon" class="material-symbols-outlined"> trending_up </span>
+      <div class="card-header">
+        <h3>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h3>
+      </div>
+      <button
+        type="button"
+        class="btn btn-success m-3"
+        routerLink="/StonkDetails/{{ s.ticker }}"
+      >
+        Click for Deets
+      </button>
+      <div class="card-footer text-muted">
+        <span>+${{ (s.day.c - s.day.o).toFixed(2) }}</span>
+        <span id="icon" class="material-symbols-outlined"> trending_up </span>
+      </div>
+    </div>
+    <div
+      *ngIf="s.day.o > s.day.c"
+      class="card col col-sm-6 shadow border border-danger m-2 p-0"
+    >
+      <div class="card-header">
+        <h3>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h3>
+      </div>
+      <button
+        type="button"
+        class="btn btn-danger m-3"
+        routerLink="/StonkDetails/{{ s.ticker }}"
+      >
+        Click for Deets
+      </button>
+      <div class="card-footer text-muted">
+        <span>-${{ (s.day.o - s.day.c).toFixed(2) }}</span>
+        <span id="icon" class="material-symbols-outlined"> trending_down</span>
+      </div>
     </div>
   </div>
-  <div
-    *ngIf="s.day.o > s.day.c"
-    class="card col col-sm-6 shadow border border-danger m-2 p-0"
-  >
-    <div class="card-header">
-      <h3>{{ s.ticker }} - ${{ s.day.c.toFixed(2) }}</h3>
-    </div>
-    <button
-      type="button"
-      class="btn btn-danger m-3"
-      routerLink="/StonkDetails/{{ s.ticker }}"
-    >
-      Click for Deets
-    </button>
-    <div class="card-footer text-muted">
-      <span>-${{ (s.day.o - s.day.c).toFixed(2) }}</span>
-      <span id="icon" class="material-symbols-outlined"> trending_down</span>
-    </div>
-  </div>
+  <p *ngIf="!isEmpty">Add some stonks</p>
 </div>
-<p *ngIf="!isEmpty">Add some stonks</p>
