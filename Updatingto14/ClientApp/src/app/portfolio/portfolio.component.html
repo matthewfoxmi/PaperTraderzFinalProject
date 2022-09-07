@@ -20,8 +20,16 @@
               <p class="card-text">
                 Portfolio Value: ${{ numberWithCommas(portfolioValue) }}
               </p>
-              <button (click)="toggleEditUserName()">Edit Username</button>
-              <button (click)="toggleEditProfilePicture()">
+              <button
+                class="btn btn-secondary m-1"
+                (click)="toggleEditUserName()"
+              >
+                Edit Username
+              </button>
+              <button
+                class="btn btn-secondary m-1"
+                (click)="toggleEditProfilePicture()"
+              >
                 Edit Profile Picture
               </button>
             </div>
@@ -35,17 +43,21 @@
           (ngSubmit)="toggleEditUserName()"
         >
           <input
+            id="formtext"
             type="text"
             name="profileName"
             placeholder="{{ profileName }}"
             ngModel
           />
-          <button>Update Username</button>
+          <br />
+          <button id="formbutton">Update Username</button>
         </form>
         <span *ngIf="userNameExists">
           This username is taken. Please pick a different username.
         </span>
-        <button (click)="toggleEditUserName()">Back to Profile</button>
+        <button id="formbutton" (click)="toggleEditUserName()">
+          Back to Profile
+        </button>
       </div>
       <div *ngIf="editModeProfilePicture" style="text-align: center">
         <form
@@ -54,14 +66,18 @@
           (ngSubmit)="toggleEditProfilePicture()"
         >
           <input
+            id="formtext"
             type="text"
             name="profilePicture"
             placeholder="Image URL"
             ngModel
           />
-          <button>Update Profile Picture</button>
+          <br />
+          <button id="formbutton">Update Profile Picture</button>
         </form>
-        <button (click)="toggleEditProfilePicture()">Back to Profile</button>
+        <button id="formbutton" (click)="toggleEditProfilePicture()">
+          Back to Profile
+        </button>
       </div>
     </div>
   </div>

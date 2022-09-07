@@ -12,13 +12,23 @@ code {
   color: #e01a76;
 }
 
-.navbar {
+/* .navbar {
   color: white;
   background-color: #3b3b3b;
 }
 
+.navbar-toggler {
+  color: #399494;
+}
+
+.navbar-toggler-icon {
+  background-color: #ffffff;
+} */
+
+
 body {
   background-color: #242424;
+  font-family: 'Space Mono', monospace;
 }
 
 .card {
@@ -65,4 +75,59 @@ body {
 
 .border-secondary {
   border-color: #399494;
+}
+
+#formtext {
+  border-color: #317373;
+  border-radius: 5px;
+  border-width: 5px;
+  border-style: solid;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+#formbutton {
+  color: #fff;
+  background-color: #399494;
+  border-color: #317373;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#formtextStonkList {
+  border-color: #317373;
+  border-radius: 5px;
+  border-width: 5px;
+  border-style: solid;
+  margin: 10px;
+  padding: 10px;
+}
+
+#formbuttonStonkList {
+  color: #fff;
+  background-color: #399494;
+  border-color: #317373;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+  
+#formtextModal {
+  width: 60%;
+  border-color: #317373;
+  border-radius: 5px;
+  border-width: 5px;
+  border-style: solid;  
+  margin: 10px;
+  padding: 10px;
+}
+
+#formbuttonModal {
+  color: #fff;
+  background-color: #399494;
+  border-color: #317373;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
 }

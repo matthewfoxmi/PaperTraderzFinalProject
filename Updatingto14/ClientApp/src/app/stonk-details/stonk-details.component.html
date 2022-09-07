@@ -119,10 +119,19 @@
                   #purchaseStockForm="ngForm"
                   (ngSubmit)="purchaseStock(purchaseStockForm)"
                 >
-                  <input type="number" name="quantity" min="1" ngModel />
-                  <button>Purchase</button>
+                  <input
+                    id="formtextModal"
+                    type="number"
+                    name="quantity"
+                    min="1"
+                    ngModel
+                  />
+                  <br />
+                  <button id="formbuttonModal">Purchase</button>
                 </form>
-                <button (click)="togglePurchaseForm()">Cancel</button>
+                <button id="formbuttonModal" (click)="togglePurchaseForm()">
+                  Cancel
+                </button>
               </div>
             </div>
             <div class="graybox" *ngIf="displaySellForm">
@@ -132,10 +141,19 @@
                   #sellStockForm="ngForm"
                   (ngSubmit)="sellStock(sellStockForm)"
                 >
-                  <input type="number" name="quantity" min="1" ngModel />
-                  <button>Sell</button>
+                  <input
+                    id="formtextModal"
+                    type="number"
+                    name="quantity"
+                    min="1"
+                    ngModel
+                  />
+                  <br />
+                  <button id="formbuttonModal">Sell</button>
                 </form>
-                <button (click)="toggleSellForm()">Cancel</button>
+                <button id="formbuttonModal" (click)="toggleSellForm()">
+                  Cancel
+                </button>
               </div>
             </div>
           </div>
@@ -247,10 +265,19 @@
                   #purchaseStockForm="ngForm"
                   (ngSubmit)="purchaseStock(purchaseStockForm)"
                 >
-                  <input type="number" name="quantity" min="1" ngModel />
-                  <button>Purchase</button>
+                  <input
+                    id="formtextModal"
+                    type="number"
+                    name="quantity"
+                    min="1"
+                    ngModel
+                  />
+                  <br />
+                  <button id="formbuttonModal">Purchase</button>
                 </form>
-                <button (click)="togglePurchaseForm()">Cancel</button>
+                <button id="formbuttonModal" (click)="togglePurchaseForm()">
+                  Cancel
+                </button>
               </div>
             </div>
             <div class="graybox" *ngIf="displaySellForm">
@@ -260,10 +287,19 @@
                   #sellStockForm="ngForm"
                   (ngSubmit)="sellStock(sellStockForm)"
                 >
-                  <input type="number" name="quantity" min="1" ngModel />
-                  <button>Sell</button>
+                  <input
+                    id="formtextModal"
+                    type="number"
+                    name="quantity"
+                    min="1"
+                    ngModel
+                  />
+                  <br />
+                  <button id="formbuttonModal">Sell</button>
                 </form>
-                <button (click)="toggleSellForm()">Cancel</button>
+                <button id="formbuttonModal" (click)="toggleSellForm()">
+                  Cancel
+                </button>
               </div>
             </div>
           </div>
