@@ -55,7 +55,12 @@ export class WatchListComponent implements OnInit {
     this.watchingService.removeWatchingStock(ticker).subscribe((response:any) => {
       let index = this.addedToWatching.findIndex(x => x == ticker);
       this.addedToWatching.splice(index,1); 
-      this.ngOnInit();     
+      let index2:number = this.stonk.tickers.findIndex(t => t.ticker == ticker)
+      this.stonk.tickers.splice(index2,1);
+      if(this.stonk.tickers.length == 0)
+      {
+        this.isEmpty = false;
+      }
   });   
  }
 
