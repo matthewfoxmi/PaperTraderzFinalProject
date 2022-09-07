@@ -1,5 +1,72 @@
 <div *ngIf="loggedIn">
-  <div style="text-align: center" class="row justify-content-center">
+  <div class="row justify-content-center">
+    <div class="card col col-sm-6 shadow border border-dark m-2 p-2">
+      <div *ngIf="editModeUserName == false && editModeProfilePicture == false">
+        <div class="row align-items-center g-0">
+          <div class="col-4">
+            <img
+              height="100px"
+              src="{{ profilePicture }}"
+              class="img-fluid rounded-start"
+              alt="..."
+            />
+          </div>
+          <div class="col-8">
+            <div class="card-body">
+              <h5 class="card-title mb-2">{{ profileName }}</h5>
+              <p class="card-text">
+                Current Cash: ${{ currentCash.toFixed(2) }}
+              </p>
+              <p class="card-text">
+                Portfolio Value: ${{ portfolioValue.toFixed(2) }}
+              </p>
+              <button (click)="toggleEditUserName()">Edit Username</button>
+              <button (click)="toggleEditProfilePicture()">
+                Edit Profile Picture
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="editModeUserName" style="text-align: center">
+        <form
+          #SaveChanges="ngForm"
+          (ngSubmit)="saveChanges(SaveChanges)"
+          (ngSubmit)="toggleEditUserName()"
+        >
+          <input
+            type="text"
+            name="profileName"
+            placeholder="{{ profileName }}"
+            ngModel
+          />
+          <button>Update Username</button>
+        </form>
+        <span *ngIf="userNameExists">
+          This username is taken. Please pick a different username.
+        </span>
+        <button (click)="toggleEditUserName()">Back to Profile</button>
+      </div>
+      <div *ngIf="editModeProfilePicture" style="text-align: center">
+        <form
+          #saveNewProfilePicture="ngForm"
+          (ngSubmit)="saveNewProfilePic(saveNewProfilePicture)"
+          (ngSubmit)="toggleEditProfilePicture()"
+        >
+          <input
+            type="text"
+            name="profilePicture"
+            placeholder="Image URL"
+            ngModel
+          />
+          <button>Update Profile Picture</button>
+        </form>
+        <button (click)="toggleEditProfilePicture()">Back to Profile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div style="text-align: center" class="row justify-content-center">
     <div class="card col col-sm-6 shadow border border-dark m-2 p-2">
       <span
         *ngIf="editModeUserName == false && editModeProfilePicture == false"
@@ -49,7 +116,7 @@
         <button (click)="toggleEditProfilePicture()">Back to Profile</button>
       </span>
     </div>
-  </div>
+  </div> -->
 
   <div *ngIf="isEmpty">
     <!-- structural directive = ngfor ng if -->
@@ -71,17 +138,21 @@
             </span>
           </div>
         </div>
-        <p>
-          Cost Basis: ${{ allStonksOwnedByUser[i].purchasePrice.toFixed(2) }}
-        </p>
-        <p>Shares Owned: {{ allStonksOwnedByUser[i].sharesOwned }}</p>
-        <button
-          type="button"
-          class="btn btn-success m-3"
-          routerLink="/StonkDetails/{{ s.ticker }}"
-        >
-          Click for Deets
-        </button>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Cost Basis: ${{ allStonksOwnedByUser[i].purchasePrice.toFixed(2) }}
+          </li>
+          <li class="list-group-item">
+            Shares Owned: {{ allStonksOwnedByUser[i].sharesOwned }}
+          </li>
+          <button
+            type="button"
+            class="btn btn-success m-3"
+            routerLink="/StonkDetails/{{ s.ticker }}"
+          >
+            Click for Deets
+          </button>
+        </ul>
       </div>
       <div
         *ngIf="s.day.o > s.day.c"
