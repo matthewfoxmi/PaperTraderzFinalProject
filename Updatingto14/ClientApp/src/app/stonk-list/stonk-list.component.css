@@ -1,3 +1,11 @@
 #icon{
     font-size: 200%;
+    /* position:relative; */
+    /* top:11px; */
+    /* right: 9px;  */
+    vertical-align: middle;
+}
+
+#bold{
+    font-weight: 500;
 }
