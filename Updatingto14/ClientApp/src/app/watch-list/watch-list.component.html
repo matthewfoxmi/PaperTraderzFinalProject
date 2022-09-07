@@ -10,9 +10,9 @@
     >
       <div class="card-header d-flex flex-row justify-content-between">
         <h3>{{ s.ticker }}</h3>
-        <h3>${{ s.day.c.toFixed(2) }}</h3>
+        <h3>${{ numberWithCommas(s.day.c) }}</h3>
         <div>
-          <span>+${{ (s.day.c - s.day.o).toFixed(2) }}</span>
+          <span>+${{ numberWithCommas(s.day.c - s.day.o) }}</span>
           <span id="icon" class="material-symbols-outlined"> trending_up </span>
         </div>
       </div>
@@ -22,7 +22,7 @@
           class="btn btn-success m-2"
           routerLink="/StonkDetails/{{ s.ticker }}"
         >
-          Click for Deets
+          Details
         </button>
         <button
           (click)="removeWatchingStock(s.ticker)"
@@ -39,9 +39,9 @@
     >
       <div class="card-header d-flex flex-row justify-content-between">
         <h3>{{ s.ticker }}</h3>
-        <h3>${{ s.day.c.toFixed(2) }}</h3>
+        <h3>${{ numberWithCommas(s.day.c) }}</h3>
         <div>
-          <span>-${{ (s.day.o - s.day.c).toFixed(2) }}</span>
+          <span>-${{ numberWithCommas(s.day.o - s.day.c) }}</span>
           <span id="icon" class="material-symbols-outlined">
             trending_down</span
           >
@@ -53,7 +53,7 @@
           class="btn btn-danger m-2"
           routerLink="/StonkDetails/{{ s.ticker }}"
         >
-          Click for Deets
+          Details
         </button>
         <button
           (click)="removeWatchingStock(s.ticker)"
@@ -65,7 +65,13 @@
       </div>
     </div>
   </div>
-  <div style="text-align: center" class="justify-content-center">
-    <p *ngIf="!isEmpty">Add stocks from the Stock List</p>
+  <div
+    *ngIf="!isEmpty"
+    style="text-align: center"
+    class="row justify-content-center"
+  >
+    <div class="card col col-sm-6 shadow border border-secondary m-2 p-0">
+      <p>Add stocks from the Stock List</p>
+    </div>
   </div>
 </div>

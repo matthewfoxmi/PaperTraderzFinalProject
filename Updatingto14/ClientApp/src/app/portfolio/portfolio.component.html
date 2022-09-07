@@ -15,10 +15,10 @@
             <div class="card-body">
               <h5 class="card-title mb-2">{{ profileName }}</h5>
               <p class="card-text">
-                Current Cash: ${{ currentCash.toFixed(2) }}
+                Current Cash: ${{ numberWithCommas(currentCash) }}
               </p>
               <p class="card-text">
-                Portfolio Value: ${{ portfolioValue.toFixed(2) }}
+                Portfolio Value: ${{ numberWithCommas(portfolioValue) }}
               </p>
               <button (click)="toggleEditUserName()">Edit Username</button>
               <button (click)="toggleEditProfilePicture()">
@@ -65,59 +65,6 @@
       </div>
     </div>
   </div>
-
-  <!-- <div style="text-align: center" class="row justify-content-center">
-    <div class="card col col-sm-6 shadow border border-dark m-2 p-2">
-      <span
-        *ngIf="editModeUserName == false && editModeProfilePicture == false"
-      >
-        <img height="100px" src="{{ profilePicture }}" />
-        <p>{{ profileName }}</p>
-        <p>Current Cash: ${{ currentCash.toFixed(2) }}</p>
-        <p>Portfolio Value: ${{ portfolioValue.toFixed(2) }}</p>
-        <button (click)="toggleEditUserName()">Edit Username</button>
-        <button (click)="toggleEditProfilePicture()">
-          Edit Profile Picture
-        </button>
-      </span>
-      <span *ngIf="editModeUserName">
-        <form
-          #SaveChanges="ngForm"
-          (ngSubmit)="saveChanges(SaveChanges)"
-          (ngSubmit)="toggleEditUserName()"
-        >
-          <input
-            type="text"
-            name="profileName"
-            placeholder="{{ profileName }}"
-            ngModel
-          />
-          <button>Update Username</button>
-        </form>
-        <span *ngIf="userNameExists">
-          This username is taken. Please pick a different username.
-        </span>
-        <button (click)="toggleEditUserName()">Back to Profile</button>
-      </span>
-      <span *ngIf="editModeProfilePicture">
-        <form
-          #saveNewProfilePicture="ngForm"
-          (ngSubmit)="saveNewProfilePic(saveNewProfilePicture)"
-          (ngSubmit)="toggleEditProfilePicture()"
-        >
-          <input
-            type="text"
-            name="profilePicture"
-            placeholder="Image URL"
-            ngModel
-          />
-          <button>Update Profile Picture</button>
-        </form>
-        <button (click)="toggleEditProfilePicture()">Back to Profile</button>
-      </span>
-    </div>
-  </div> -->
-
   <div *ngIf="isEmpty">
     <!-- structural directive = ngfor ng if -->
     <div
@@ -131,9 +78,9 @@
       >
         <div class="card-header d-flex flex-row justify-content-between">
           <h3>{{ s.ticker }}</h3>
-          <h3>${{ s.day.c.toFixed(2) }}</h3>
+          <h3>${{ numberWithCommas(s.day.c) }}</h3>
           <div>
-            <span>+${{ (s.day.c - s.day.o).toFixed(2) }}</span>
+            <span>+${{ numberWithCommas(s.day.c - s.day.o) }}</span>
             <span id="icon" class="material-symbols-outlined">
               trending_up
             </span>
@@ -141,7 +88,9 @@
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            Cost Basis: ${{ allStonksOwnedByUser[i].purchasePrice.toFixed(2) }}
+            Cost Basis: ${{
+              numberWithCommas(allStonksOwnedByUser[i].purchasePrice)
+            }}
           </li>
           <li class="list-group-item">
             Shares Owned: {{ allStonksOwnedByUser[i].sharesOwned }}
@@ -151,7 +100,7 @@
             class="btn btn-success m-3"
             routerLink="/StonkDetails/{{ s.ticker }}"
           >
-            Click for Deets
+            Details
           </button>
         </ul>
       </div>
@@ -161,9 +110,9 @@
       >
         <div class="card-header d-flex flex-row justify-content-between">
           <h3>{{ s.ticker }}</h3>
-          <h3>${{ s.day.c.toFixed(2) }}</h3>
+          <h3>${{ numberWithCommas(s.day.c) }}</h3>
           <div>
-            <span>-${{ (s.day.o - s.day.c).toFixed(2) }}</span>
+            <span>-${{ numberWithCommas(s.day.o - s.day.c) }}</span>
             <span id="icon" class="material-symbols-outlined">
               trending_down
             </span>
@@ -171,7 +120,9 @@
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            Cost Basis: ${{ allStonksOwnedByUser[i].purchasePrice.toFixed(2) }}
+            Cost Basis: ${{
+              numberWithCommas(allStonksOwnedByUser[i].purchasePrice)
+            }}
           </li>
           <li class="list-group-item">
             Shares Owned: {{ allStonksOwnedByUser[i].sharesOwned }}
@@ -181,13 +132,13 @@
             class="btn btn-danger m-3"
             routerLink="/StonkDetails/{{ s.ticker }}"
           >
-            Click for Deets
+            Details
           </button>
         </ul>
       </div>
     </div>
   </div>
   <div *ngIf="!isEmpty">
-    <p>buy some stocks to get started!</p>
+    <p>Buy some stocks to get started!</p>
   </div>
 </div>

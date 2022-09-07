@@ -5,15 +5,64 @@
 /* @import "~bootstrap-icons/font/bootstrap-icons.css"; */
 
 a {
-  color: #0366d6;
+  color: white;
 }
 
 code {
   color: #e01a76;
 }
 
+.navbar {
+  color: white;
+  background-color: #3b3b3b;
+}
+
+body {
+  background-color: #242424;
+}
+
+.card {
+  color: white;
+  background-color: #3b3b3b;
+}
+
+.list-group-item {
+  color: white;
+  background-color: #3b3b3b;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #399494;
+  border-color: #317373;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #73ac31;
+  border-color: #526229;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #ee2039;
+  border-color: #ac0031;
+}
+
+.border-success {
+  border-color: #73ac31;
+}
+
+.border-danger {
+  border-color: #ee2039;
+}
+
+.border-secondary {
+  border-color: #399494;
 }

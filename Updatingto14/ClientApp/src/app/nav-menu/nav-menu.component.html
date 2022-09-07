@@ -1,6 +1,6 @@
 <header>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3"
   >
     <div class="container">
       <a class="navbar-brand" [routerLink]="['/']">PaperTraderz</a>
@@ -26,15 +26,15 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link text-dark" [routerLink]="['/']">Portfolio</a>
+            <a class="nav-link text-light" [routerLink]="['/']">Portfolio</a>
           </li>
           <li
             *ngIf="loggedIn"
             class="nav-item"
             [routerLinkActive]="['link-active']"
           >
-            <a class="nav-link text-dark" [routerLink]="['/Stonks']"
-              >Stonks List</a
+            <a class="nav-link text-light" [routerLink]="['/Stonks']"
+              >Stocks List</a
             >
           </li>
           <li
@@ -42,7 +42,7 @@
             class="nav-item"
             [routerLinkActive]="['link-active']"
           >
-            <a class="nav-link text-dark" [routerLink]="['/WatchList']"
+            <a class="nav-link text-light" [routerLink]="['/WatchList']"
               >Watching</a
             >
           </li>
@@ -51,13 +51,13 @@
             class="nav-item"
             [routerLinkActive]="['link-active']"
           >
-            <a class="nav-link text-dark" [routerLink]="['/Leaderboard']"
+            <a class="nav-link text-light" [routerLink]="['/Leaderboard']"
               >Leaderboard</a
             >
           </li>
           <li class="nav-item">
             <button
-              class="btn btn-outline-dark"
+              class="btn btn-secondary"
               *ngIf="loggedIn"
               (click)="signOut()"
             >

@@ -68,7 +68,11 @@ export class StonkListComponent implements OnInit {
 
   searchForStock(form:NgForm):any{
     let search = form.form.value.searchedStock;
-    this.router.navigate([`StonkDetails/${search}`])
-  }  
+    this.router.navigate([`StonkDetails/${search.toUpperCase()}`])
+  }
+  
+  numberWithCommas(x:number) {
+    return x.toFixed(2).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  }
   
 }

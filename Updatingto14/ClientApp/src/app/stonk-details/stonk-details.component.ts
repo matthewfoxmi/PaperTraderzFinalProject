@@ -120,6 +120,15 @@ export class StonkDetailsComponent implements OnInit {
     this.displaySellForm = !this.displaySellForm;
   }
 
+  numberWithCommas(x:number) {
+    return x.toFixed(2).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  difference(a:number) {
+    return Math.abs(a);
+  }
+  
+
 
 
 }

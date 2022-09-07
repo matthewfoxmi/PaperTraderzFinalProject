@@ -112,4 +112,8 @@ export class PortfolioComponent implements OnInit {
       console.log(response);
     })
   }
+  numberWithCommas(x:number) {
+    return x.toFixed(2).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  }
+
 }
