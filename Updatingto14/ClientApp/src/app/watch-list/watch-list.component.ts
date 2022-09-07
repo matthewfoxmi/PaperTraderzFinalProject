@@ -15,6 +15,8 @@ export class WatchListComponent implements OnInit {
   stonk:Stonk = {} as Stonk;
   user: SocialUser = {} as SocialUser;
   loggedIn: boolean = false;
+  addedToWatching:string[] = [];
+
   constructor(private stonkService: StonkService, private watchingService: WatchingService, private userService:UserService, private authService: SocialAuthService) { }
 
   //accesses SQL database table for all watched stocks and pulls from api
@@ -31,7 +33,7 @@ export class WatchListComponent implements OnInit {
       //if statement makes sure we aren't returning null - if we return null we'll get the entire stockmarket data
       if(response.length >= 1){
         let tickers:string = "";
-        //seperates result from our SQL table with a comma.  Saves to the tickers string which is sent thru stock API to get data
+        //separates result from our SQL table with a comma.  Saves to the tickers string which is sent thru stock API to get data
       allStonks.forEach((s:any) => {
         tickers += s+",";
         console.log(s);
@@ -47,9 +49,14 @@ export class WatchListComponent implements OnInit {
       }else{
         this.isEmpty = false;
       }
-
-    })
+    });
   }
+  removeWatchingStock(ticker:string):any{
+    this.watchingService.removeWatchingStock(ticker).subscribe((response:any) => {
+      let index = this.addedToWatching.findIndex(x => x == ticker);
+      this.addedToWatching.splice(index,1); 
+      this.ngOnInit();     
+  });   
+ }
 
-  
 }
