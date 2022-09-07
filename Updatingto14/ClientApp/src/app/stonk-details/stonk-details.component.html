@@ -13,81 +13,166 @@
   <div *ngIf="displayStonk.tickers.length != 0">
     <!-- stock info -->
     <div class="row justify-content-center" style="text-align: center">
-      <div class="card col col-sm-6 shadow border border-success m-2 p-2">
-        <h2>
-          {{ displayStonk.tickers[0].ticker }}
-          <br />
-          Current Price: ${{ displayStonk.tickers[0].day.c }}
-          <br />
-          Opening Price: ${{ displayStonk.tickers[0].day.o }}
-          <br />
-          Today's change:
-          {{
-            (
-              displayStonk.tickers[0].day.c - displayStonk.tickers[0].day.o
-            ).toFixed(2)
-          }}
-          <br />
-          Change from yesterday's price: ${{
-            displayStonk.tickers[0].todaysChange.toFixed(2)
-          }}
-          which is: {{ displayStonk.tickers[0].todaysChangePerc }}%
-          <br />
-          Shares Owned: {{ sharesOwned
-          }}<!-- put method here -->
-        </h2>
-      </div>
-    </div>
+      <div
+        *ngIf="displayStonk.tickers[0].day.o <= displayStonk.tickers[0].day.c"
+        class="card col col-sm-6 shadow border border-success m-2 p-0"
+      >
+        <div class="card-header d-flex flex-row justify-content-between">
+          <h3>
+            {{ displayStonk.tickers[0].ticker }}
+          </h3>
+          <h3>${{ displayStonk.tickers[0].day.c.toFixed(2) }}</h3>
+          <div>
+            <span>
+              +${{
+                (
+                  displayStonk.tickers[0].day.c - displayStonk.tickers[0].day.o
+                ).toFixed(2)
+              }}
+            </span>
+            <span id="icon" class="material-symbols-outlined">
+              trending_up
+            </span>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-start">
+            Current Price: ${{ displayStonk.tickers[0].day.c.toFixed(2) }}
+          </li>
+          <li class="list-group-item d-flex justify-content-start">
+            Opening Price: ${{ displayStonk.tickers[0].day.o.toFixed(2) }}
+          </li>
+          <li class="list-group-item d-flex justify-content-start">
+            Today's change: ${{
+              (
+                displayStonk.tickers[0].day.c - displayStonk.tickers[0].day.o
+              ).toFixed(2)
+            }}
+          </li>
+          <li class="list-group-item d-flex justify-content-start">
+            Change from yesterday's price: ${{
+              displayStonk.tickers[0].todaysChange.toFixed(2)
+            }}
+            which is: {{ displayStonk.tickers[0].todaysChangePerc }}%
+          </li>
+          <li class="list-group-item d-flex justify-content-start">
+            Shares Owned: {{ sharesOwned }}
+          </li>
+        </ul>
+        <div class="card-footer">
+          <div class="row">
+            <span class="col-6 text-start">
+              <button
+                (click)="addWatchingStock()"
+                *ngIf="!getWatching()"
+                type="button"
+                class="btn btn-secondary m-1"
+              >
+                Watch
+              </button>
+              <button
+                (click)="removeWatchingStock()"
+                *ngIf="getWatching()"
+                type="button"
+                class="btn btn-secondary m-1"
+              >
+                Stop Watching
+              </button>
+            </span>
+            <span class="col-6 text-end mx-auto">
+              <button
+                (click)="togglePurchaseForm()"
+                type="button"
+                class="btn btn-secondary m-1"
+              >
+                Buy Stock
+              </button>
 
-    <!-- add/remove watching stock button -->
-    <div class="row justify-content-center" style="text-align: center">
-      <div class="card col col-sm-6 shadow border border-success m-2 p-2">
-        <button (click)="addWatchingStock()" *ngIf="!getWatching()">
-          Watch
-        </button>
-        <button (click)="removeWatchingStock()" *ngIf="getWatching()">
-          Stop Watching
-        </button>
-      </div>
-    </div>
-
-    <!-- purchase stock form -->
-    <div class="row justify-content-center" style="text-align: center">
-      <div class="card col col-sm-6 shadow border border-success m-2 p-2">
-        <button (click)="togglePurchaseForm()">Buy Stock</button>
-        <div class="graybox" *ngIf="displayPurchaseForm">
-          <div class="form-modal">
-            <form
-              *ngIf="displayStonk.tickers[0].day.c > 0"
-              #purchaseStockForm="ngForm"
-              (ngSubmit)="purchaseStock(purchaseStockForm)"
-            >
-              <input type="number" name="quantity" min="1" ngModel />
-              <button>Purchase</button>
-            </form>
-            <button (click)="togglePurchaseForm()">Cancel</button>
+              <button
+                (click)="toggleSellForm()"
+                type="button"
+                class="btn btn-secondary m-1"
+              >
+                Sell Stock
+              </button>
+            </span>
+            <div class="graybox" *ngIf="displayPurchaseForm">
+              <div class="form-modal">
+                <form
+                  *ngIf="displayStonk.tickers[0].day.c > 0"
+                  #purchaseStockForm="ngForm"
+                  (ngSubmit)="purchaseStock(purchaseStockForm)"
+                >
+                  <input type="number" name="quantity" min="1" ngModel />
+                  <button>Purchase</button>
+                </form>
+                <button (click)="togglePurchaseForm()">Cancel</button>
+              </div>
+            </div>
+            <div class="graybox" *ngIf="displaySellForm">
+              <div class="form-modal">
+                <form
+                  *ngIf="displayStonk.tickers[0].day.c > 0"
+                  #sellStockForm="ngForm"
+                  (ngSubmit)="sellStock(sellStockForm)"
+                >
+                  <input type="number" name="quantity" min="1" ngModel />
+                  <button>Sell</button>
+                </form>
+                <button (click)="toggleSellForm()">Cancel</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- sell stock form -->
-    <div class="row justify-content-center" style="text-align: center">
-      <div class="card col col-sm-6 shadow border border-success m-2 p-2">
-        <button (click)="toggleSellForm()">Sell Stock</button>
-        <div class="graybox" *ngIf="displaySellForm">
-          <div class="form-modal">
-            <form
-              *ngIf="displayStonk.tickers[0].day.c > 0"
-              #sellStockForm="ngForm"
-              (ngSubmit)="sellStock(sellStockForm)"
-            >
-              <input type="number" name="quantity" min="1" ngModel />
-              <button>Sell</button>
-            </form>
-            <button (click)="toggleSellForm()">Cancel</button>
+      <div
+        *ngIf="displayStonk.tickers[0].day.o > displayStonk.tickers[0].day.c"
+        class="card col col-sm-6 shadow border border-danger m-2 p-0"
+      >
+        <div class="card-header d-flex flex-row justify-content-around">
+          <h3>
+            {{ displayStonk.tickers[0].ticker }} - ${{
+              displayStonk.tickers[0].day.c.toFixed(2)
+            }}
+          </h3>
+          <div>
+            <span>
+              -${{
+                (
+                  displayStonk.tickers[0].day.o - displayStonk.tickers[0].day.c
+                ).toFixed(2)
+              }}
+            </span>
+            <span id="icon" class="material-symbols-outlined">
+              trending_down
+            </span>
           </div>
         </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Current Price: ${{ displayStonk.tickers[0].day.c.toFixed(2) }}
+          </li>
+          <li class="list-group-item">
+            Opening Price: ${{ displayStonk.tickers[0].day.o.toFixed(2) }}
+          </li>
+          <li class="list-group-item">
+            Today's change: -${{
+              (
+                displayStonk.tickers[0].day.o - displayStonk.tickers[0].day.c
+              ).toFixed(2)
+            }}
+          </li>
+          <li class="list-group-item">
+            Change from yesterday's price: ${{
+              displayStonk.tickers[0].todaysChange.toFixed(2)
+            }}
+            which is: {{ displayStonk.tickers[0].todaysChangePerc }}%
+          </li>
+          <li class="list-group-item">
+            Shares Owned: {{ sharesOwned
+            }}<!-- put method here -->
+          </li>
+        </ul>
       </div>
     </div>
 

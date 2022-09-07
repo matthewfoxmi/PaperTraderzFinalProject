@@ -26,3 +26,8 @@
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
   }
+
+  #icon{
+    font-size: 200%;
+    vertical-align: middle;
+  }
