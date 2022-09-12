@@ -28,7 +28,7 @@ code {
 
 body {
   background-color: #242424;
-  /* font-family: 'Space Mono', monospace; */
+  font-family: 'Space Mono', monospace;
 }
 
 .card {
@@ -53,9 +53,7 @@ body {
   border-color: #526229;
 }
 
-.active{
-  background-color: #df9ee7;
-}
+
 .btn-danger {
   color: #fff;
   background-color: #ee2039;
