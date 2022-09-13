@@ -121,8 +121,7 @@ export class StonkDetailsComponent implements OnInit {
   }
 
   numberWithCommas(x:number) {
-    return x.toFixed(2)
-    // .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    return x.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   difference(a:number) {
