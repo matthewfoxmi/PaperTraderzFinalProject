@@ -171,8 +171,22 @@
                   Cancel
                 </button>
                 <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
-                <p *ngIf="transactionPrice != 0">
+                <p
+                  *ngIf="
+                    transactionPrice != 0 &&
+                    sharesOwned * displayStonk.tickers[0].day.c >=
+                      transactionPrice
+                  "
+                >
                   Sell Price: ${{ numberWithCommas(transactionPrice) }}
+                </p>
+                <p
+                  *ngIf="
+                    sharesOwned * displayStonk.tickers[0].day.c <
+                    transactionPrice
+                  "
+                >
+                  You do not have that many shares to sell.
                 </p>
               </div>
             </div>
@@ -271,6 +285,7 @@
               </button>
 
               <button
+                *ngIf="sharesOwned > 0"
                 (click)="toggleSellForm()"
                 type="button"
                 class="btn btn-secondary m-1"
@@ -334,8 +349,22 @@
                   Cancel
                 </button>
                 <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
-                <p *ngIf="transactionPrice != 0">
+                <p
+                  *ngIf="
+                    transactionPrice != 0 &&
+                    sharesOwned * displayStonk.tickers[0].day.c >=
+                      transactionPrice
+                  "
+                >
                   Sell Price: ${{ numberWithCommas(transactionPrice) }}
+                </p>
+                <p
+                  *ngIf="
+                    sharesOwned * displayStonk.tickers[0].day.c <
+                    transactionPrice
+                  "
+                >
+                  You do not have that many shares to sell.
                 </p>
               </div>
             </div>
