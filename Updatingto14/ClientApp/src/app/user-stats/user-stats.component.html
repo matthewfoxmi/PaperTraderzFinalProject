@@ -1,0 +1,99 @@
+<div class="row justify-content-center">
+  <div class="card col col-sm-6 shadow border border-dark m-2 p-2">
+    <div class="row align-items-center g-0">
+      <div class="col-4">
+        <img
+          height="100px"
+          src="{{ profilePicture }}"
+          class="img-fluid rounded-start"
+          alt="..."
+        />
+      </div>
+      <div class="col-8">
+        <div class="card-body">
+          <h5 class="card-title mb-2">{{ profileName }}</h5>
+          <p class="card-text">
+            Current Cash: ${{ numberWithCommas(currentCash) }}
+          </p>
+          <p class="card-text">
+            Portfolio Value: ${{ numberWithCommas(portfolioValue) }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="isEmpty">
+  <!-- structural directive = ngfor ng if -->
+  <div
+    *ngFor="let s of stonk.tickers; index as i"
+    class="row justify-content-center"
+    style="text-align: center"
+  >
+    <div
+      *ngIf="s.day.o <= s.day.c"
+      class="card col col-sm-6 shadow border border-success m-2 p-0"
+    >
+      <div class="card-header d-flex flex-row justify-content-between">
+        <h3>{{ s.ticker }}</h3>
+        <h3>${{ numberWithCommas(s.day.c) }}</h3>
+        <div>
+          <span>+${{ numberWithCommas(s.day.c - s.day.o) }}</span>
+          <span id="icon" class="material-symbols-outlined"> trending_up </span>
+        </div>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          Cost Basis: ${{
+            numberWithCommas(allStonksOwnedByUser[i].purchasePrice)
+          }}
+        </li>
+        <li class="list-group-item">
+          Shares Owned: {{ allStonksOwnedByUser[i].sharesOwned }}
+        </li>
+        <button
+          type="button"
+          class="btn btn-success m-3"
+          routerLink="/StonkDetails/{{ s.ticker }}"
+        >
+          Details
+        </button>
+      </ul>
+    </div>
+    <div
+      *ngIf="s.day.o > s.day.c"
+      class="card col col-sm-6 shadow border border-danger m-2 p-0"
+    >
+      <div class="card-header d-flex flex-row justify-content-between">
+        <h3>{{ s.ticker }}</h3>
+        <h3>${{ numberWithCommas(s.day.c) }}</h3>
+        <div>
+          <span>-${{ numberWithCommas(s.day.o - s.day.c) }}</span>
+          <span id="icon" class="material-symbols-outlined">
+            trending_down
+          </span>
+        </div>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          Cost Basis: ${{
+            numberWithCommas(allStonksOwnedByUser[i].purchasePrice)
+          }}
+        </li>
+        <li class="list-group-item">
+          Shares Owned: {{ allStonksOwnedByUser[i].sharesOwned }}
+        </li>
+        <button
+          type="button"
+          class="btn btn-danger m-3"
+          routerLink="/StonkDetails/{{ s.ticker }}"
+        >
+          Details
+        </button>
+      </ul>
+    </div>
+  </div>
+</div>
+<div *ngIf="!isEmpty">
+  <p>Buy some stocks to get started!</p>
+</div>

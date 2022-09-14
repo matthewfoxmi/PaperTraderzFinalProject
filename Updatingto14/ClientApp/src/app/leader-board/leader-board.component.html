@@ -10,8 +10,11 @@
     >
       <p>
         <img height="100px" src="{{ u.user.userIcon }}" />
-        {{ i + 1 }}. <u>{{ u.user.profileName }}</u> - ${{
-          numberWithCommas(u.netWorth)
+        {{ i + 1 }}.
+        <a routerLink="/UserStats/{{ u.user.googleId }}">{{
+          u.user.profileName
+        }}</a
+        >- ${{ numberWithCommas(u.netWorth)
         }}<img
           height="50px"
           src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/468583d21fd7248.png"
@@ -24,8 +27,10 @@
     >
       <p>
         <img height="100px" src="{{ u.user.userIcon }}" />
-        {{ i + 1 }}. <u>{{ u.user.profileName }}</u> - ${{
-          numberWithCommas(u.netWorth)
+        {{ i + 1 }}.<a routerLink="/UserStats/{{ u.user.googleId }}">
+          {{ u.user.profileName }}</a
+        >
+        - ${{ numberWithCommas(u.netWorth)
         }}<img
           height="45px"
           src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d07a8f12cd136e6.png"
@@ -38,8 +43,10 @@
     >
       <p>
         <img height="100px" src="{{ u.user.userIcon }}" />
-        {{ i + 1 }}. <u>{{ u.user.profileName }}</u> - ${{
-          numberWithCommas(u.netWorth)
+        {{ i + 1 }}.<a routerLink="/UserStats/{{ u.user.googleId }}">
+          <u>{{ u.user.profileName }}</u></a
+        >
+        - ${{ numberWithCommas(u.netWorth)
         }}<img
           height="50px"
           src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/829134d3159b00b.png"
@@ -52,9 +59,11 @@
     >
       <p>
         <img height="100px" src="{{ u.user.userIcon }}" />
-        {{ i + 1 }}. <u>{{ u.user.profileName }}</u> - ${{
-          numberWithCommas(u.netWorth)
-        }}
+        {{ i + 1 }}.
+        <a routerLink="/UserStats/{{ u.user.googleId }}">{{
+          u.user.profileName
+        }}</a>
+        - ${{ numberWithCommas(u.netWorth) }}
       </p>
     </div>
   </div>
