@@ -127,6 +127,7 @@
                     type="number"
                     name="quantity"
                     min="1"
+                    (change)="calculatePrice(purchaseStockForm)"
                     ngModel
                   />
                   <br />
@@ -136,6 +137,9 @@
                   Cancel
                 </button>
                 <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
+                <p *ngIf="transactionPrice != 0">
+                  Purchase Price: ${{ numberWithCommas(transactionPrice) }}
+                </p>
               </div>
             </div>
             <div class="graybox" *ngIf="displaySellForm">
@@ -150,6 +154,7 @@
                     type="number"
                     name="quantity"
                     min="1"
+                    (change)="calculatePrice(sellStockForm)"
                     ngModel
                   />
                   <br />
@@ -159,6 +164,9 @@
                   Cancel
                 </button>
                 <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
+                <p *ngIf="transactionPrice != 0">
+                  Sell Price: ${{ numberWithCommas(transactionPrice) }}
+                </p>
               </div>
             </div>
           </div>
@@ -275,6 +283,7 @@
                     type="number"
                     name="quantity"
                     min="1"
+                    (change)="calculatePrice(purchaseStockForm)"
                     ngModel
                   />
                   <br />
@@ -284,6 +293,9 @@
                   Cancel
                 </button>
                 <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
+                <p *ngIf="transactionPrice != 0">
+                  Purchase Price: ${{ numberWithCommas(transactionPrice) }}
+                </p>
               </div>
             </div>
             <div class="graybox" *ngIf="displaySellForm">
@@ -298,6 +310,7 @@
                     type="number"
                     name="quantity"
                     min="1"
+                    (change)="calculatePrice(sellStockForm)"
                     ngModel
                   />
                   <br />
@@ -307,6 +320,9 @@
                   Cancel
                 </button>
                 <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
+                <p *ngIf="transactionPrice != 0">
+                  Sell Price: ${{ numberWithCommas(transactionPrice) }}
+                </p>
               </div>
             </div>
           </div>

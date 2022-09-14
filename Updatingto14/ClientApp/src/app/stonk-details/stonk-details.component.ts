@@ -27,6 +27,7 @@ export class StonkDetailsComponent implements OnInit {
   displaySellForm:boolean = false;
   sharesOwned:number = 0;
   currentCash:number = 0;
+  transactionPrice:number = 0;
 
   constructor(private userService:UserService, private investedStockService:InvestedStockService, private watchingService:WatchingService, private stonkService:StonkService, private route:ActivatedRoute, private authService: SocialAuthService) { }
   //grabs ticker from URL, sends ticker to stock API to pull relevant data
@@ -132,6 +133,10 @@ export class StonkDetailsComponent implements OnInit {
     return Math.abs(a);
   }
   
+  calculatePrice(form:NgForm){
+    this.transactionPrice = (this.displayStonk.tickers[0].day.c * form.form.value.quantity)
+    return this.transactionPrice;
+  }
 
 
 
