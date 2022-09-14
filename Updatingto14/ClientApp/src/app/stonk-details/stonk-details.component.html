@@ -105,6 +105,7 @@
               </button>
 
               <button
+                *ngIf="sharesOwned > 0"
                 (click)="toggleSellForm()"
                 type="button"
                 class="btn btn-secondary m-1"
