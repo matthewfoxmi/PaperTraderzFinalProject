@@ -133,6 +133,7 @@
                 <button id="formbuttonModal" (click)="togglePurchaseForm()">
                   Cancel
                 </button>
+                <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
               </div>
             </div>
             <div class="graybox" *ngIf="displaySellForm">
@@ -155,6 +156,7 @@
                 <button id="formbuttonModal" (click)="toggleSellForm()">
                   Cancel
                 </button>
+                <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
               </div>
             </div>
           </div>
@@ -279,6 +281,7 @@
                 <button id="formbuttonModal" (click)="togglePurchaseForm()">
                   Cancel
                 </button>
+                <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
               </div>
             </div>
             <div class="graybox" *ngIf="displaySellForm">
@@ -301,6 +304,7 @@
                 <button id="formbuttonModal" (click)="toggleSellForm()">
                   Cancel
                 </button>
+                <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
               </div>
             </div>
           </div>

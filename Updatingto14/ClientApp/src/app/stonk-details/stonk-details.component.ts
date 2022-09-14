@@ -6,6 +6,7 @@ import { InvestedStock } from '../invested-stock';
 import { InvestedStockService } from '../invested-stock.service';
 import { Stonk } from '../stonk';
 import { StonkService } from '../stonk.service';
+import { User } from '../user';
 import { UserService } from '../user.service';
 import { WatchingService } from '../watching.service';
 
@@ -25,6 +26,7 @@ export class StonkDetailsComponent implements OnInit {
   displayPurchaseForm:boolean = false;
   displaySellForm:boolean = false;
   sharesOwned:number = 0;
+  currentCash:number = 0;
 
   constructor(private userService:UserService, private investedStockService:InvestedStockService, private watchingService:WatchingService, private stonkService:StonkService, private route:ActivatedRoute, private authService: SocialAuthService) { }
   //grabs ticker from URL, sends ticker to stock API to pull relevant data
@@ -49,7 +51,9 @@ export class StonkDetailsComponent implements OnInit {
       console.log(response)
       this.sharesOwned = response.sharesOwned
     })   
-
+    this.userService.getUserById(this.user.id).subscribe((response:User) => {
+      this.currentCash = response.currentCash;
+    });
   }
   //checks if the addedtowatching array contains the ticker, if so return true
   //results in only the remove from watchlist button showing if true
