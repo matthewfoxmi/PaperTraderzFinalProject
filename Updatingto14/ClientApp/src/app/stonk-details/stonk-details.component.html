@@ -2,7 +2,9 @@
   <!--stonk not found-->
   <div *ngIf="displayStonk.tickers.length == 0">
     <div class="row justify-content-center" style="text-align: center">
-      <div class="card col col-sm-6 shadow border border-secondary m-2 p-2">
+      <div
+        class="card col col-sm-10 col-md-8 col-lg-6 shadow border border-secondary m-2 p-2"
+      >
         <p>Stock Not Found</p>
         <button routerLink="/Stonks">Find a real stock</button>
       </div>
@@ -15,7 +17,7 @@
     <div class="row justify-content-center" style="text-align: center">
       <div
         *ngIf="displayStonk.tickers[0].day.o <= displayStonk.tickers[0].day.c"
-        class="card col col-sm-6 shadow border border-success m-2 p-0"
+        class="card col col-sm-10 col-md-8 col-lg-6 shadow border border-success m-2 p-0"
       >
         <div class="card-header d-flex flex-row justify-content-between">
           <h3>
@@ -162,7 +164,7 @@
       </div>
       <div
         *ngIf="displayStonk.tickers[0].day.o > displayStonk.tickers[0].day.c"
-        class="card col col-sm-6 shadow border border-danger m-2 p-0"
+        class="card col col-sm-10 col-md-8 col-lg-6 shadow border border-danger m-2 p-0"
       >
         <div class="card-header d-flex flex-row justify-content-between">
           <h3>
@@ -314,7 +316,9 @@
       class="row justify-content-center"
       style="text-align: center"
     >
-      <div class="card col col-sm-6 shadow border border-secondary m-2 p-2">
+      <div
+        class="card col col-sm-10 col-md-8 col-lg-6 shadow border border-secondary m-2 p-2"
+      >
         <p>Come back later to trade this company!</p>
       </div>
     </div>
