@@ -11,7 +11,7 @@
       <p>
         <img height="100px" src="{{ u.user.userIcon }}" />
         {{ i + 1 }}.
-        <a routerLink="/UserStats/{{ u.user.googleId }}">{{
+        <a class="link-warning" routerLink="/UserStats/{{ u.user.googleId }}">{{
           u.user.profileName
         }}</a
         >- ${{ numberWithCommas(u.netWorth)
@@ -27,9 +27,10 @@
     >
       <p>
         <img height="100px" src="{{ u.user.userIcon }}" />
-        {{ i + 1 }}.<a routerLink="/UserStats/{{ u.user.googleId }}">
-          {{ u.user.profileName }}</a
-        >
+        {{ i + 1 }}.
+        <a class="link-success" routerLink="/UserStats/{{ u.user.googleId }}">{{
+          u.user.profileName
+        }}</a>
         - ${{ numberWithCommas(u.netWorth)
         }}<img
           height="45px"
@@ -43,7 +44,8 @@
     >
       <p>
         <img height="100px" src="{{ u.user.userIcon }}" />
-        {{ i + 1 }}.<a routerLink="/UserStats/{{ u.user.googleId }}">
+        {{ i + 1 }}.
+        <a class="link-danger" routerLink="/UserStats/{{ u.user.googleId }}">
           <u>{{ u.user.profileName }}</u></a
         >
         - ${{ numberWithCommas(u.netWorth)
@@ -60,7 +62,7 @@
       <p>
         <img height="100px" src="{{ u.user.userIcon }}" />
         {{ i + 1 }}.
-        <a routerLink="/UserStats/{{ u.user.googleId }}">{{
+        <a class="link-primary" routerLink="/UserStats/{{ u.user.googleId }}">{{
           u.user.profileName
         }}</a>
         - ${{ numberWithCommas(u.netWorth) }}
