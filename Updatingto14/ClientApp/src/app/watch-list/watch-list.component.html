@@ -6,7 +6,7 @@
   >
     <div
       *ngIf="s.day.o <= s.day.c"
-      class="card col col-sm-6 shadow border border-success m-2 p-0"
+      class="card col col-sm-10 col-md-8 col-lg-6 shadow border border-success m-2 p-0"
     >
       <div class="card-header d-flex flex-row justify-content-between">
         <h3>{{ s.ticker }}</h3>
@@ -35,7 +35,7 @@
     </div>
     <div
       *ngIf="s.day.o > s.day.c"
-      class="card col col-sm-6 shadow border border-danger m-2 p-0"
+      class="card col col-sm-10 col-md-8 col-lg-6 shadow border border-danger m-2 p-0"
     >
       <div class="card-header d-flex flex-row justify-content-between">
         <h3>{{ s.ticker }}</h3>
@@ -70,7 +70,9 @@
     style="text-align: center"
     class="row justify-content-center"
   >
-    <div class="card col col-sm-6 shadow border border-secondary m-2 p-2">
+    <div
+      class="card col col-sm-10 col-md-8 col-lg-6 shadow border border-secondary m-2 p-2"
+    >
       <h5>Add stocks from the Stock List!</h5>
     </div>
   </div>
