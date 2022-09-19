@@ -139,7 +139,7 @@
                 <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
                 <p
                   *ngIf="
-                    transactionPrice != 0 && transactionPrice <= currentCash
+                    transactionPrice > 0 && transactionPrice <= currentCash
                   "
                 >
                   Purchase Price: ${{ numberWithCommas(transactionPrice) }}
@@ -173,7 +173,7 @@
                 <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
                 <p
                   *ngIf="
-                    transactionPrice != 0 &&
+                    transactionPrice > 0 &&
                     sharesOwned * displayStonk.tickers[0].day.c >=
                       transactionPrice
                   "
@@ -317,7 +317,7 @@
                 <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
                 <p
                   *ngIf="
-                    transactionPrice != 0 && transactionPrice <= currentCash
+                    transactionPrice > 0 && transactionPrice <= currentCash
                   "
                 >
                   Purchase Price: ${{ numberWithCommas(transactionPrice) }}
@@ -351,7 +351,7 @@
                 <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
                 <p
                   *ngIf="
-                    transactionPrice != 0 &&
+                    transactionPrice > 0 &&
                     sharesOwned * displayStonk.tickers[0].day.c >=
                       transactionPrice
                   "
