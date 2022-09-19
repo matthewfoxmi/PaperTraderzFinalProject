@@ -131,7 +131,9 @@
                     ngModel
                   />
                   <br />
-                  <button id="formbuttonModal">Purchase</button>
+                  <button *ngIf="transactionPrice > 0" id="formbuttonModal">
+                    Purchase
+                  </button>
                 </form>
                 <button id="formbuttonModal" (click)="togglePurchaseForm()">
                   Cancel
@@ -146,6 +148,9 @@
                 </p>
                 <p *ngIf="transactionPrice > currentCash">
                   You do not have enough cash to complete this transaction.
+                </p>
+                <p *ngIf="transactionPrice < 0">
+                  Please do not enter a negative number.
                 </p>
               </div>
             </div>
@@ -165,7 +170,9 @@
                     ngModel
                   />
                   <br />
-                  <button id="formbuttonModal">Sell</button>
+                  <button *ngIf="transactionPrice > 0" id="formbuttonModal">
+                    Sell
+                  </button>
                 </form>
                 <button id="formbuttonModal" (click)="toggleSellForm()">
                   Cancel
@@ -187,6 +194,9 @@
                   "
                 >
                   You do not have that many shares to sell.
+                </p>
+                <p *ngIf="transactionPrice < 0">
+                  Please do not enter a negative number.
                 </p>
               </div>
             </div>
@@ -309,7 +319,9 @@
                     ngModel
                   />
                   <br />
-                  <button id="formbuttonModal">Purchase</button>
+                  <button *ngIf="transactionPrice > 0" id="formbuttonModal">
+                    Purchase
+                  </button>
                 </form>
                 <button id="formbuttonModal" (click)="togglePurchaseForm()">
                   Cancel
@@ -324,6 +336,9 @@
                 </p>
                 <p *ngIf="transactionPrice > currentCash">
                   You do not have enough cash to complete this transaction.
+                </p>
+                <p *ngIf="transactionPrice < 0">
+                  Please do not enter a negative number.
                 </p>
               </div>
             </div>
@@ -343,7 +358,9 @@
                     ngModel
                   />
                   <br />
-                  <button id="formbuttonModal">Sell</button>
+                  <button *ngIf="transactionPrice > 0" id="formbuttonModal">
+                    Sell
+                  </button>
                 </form>
                 <button id="formbuttonModal" (click)="toggleSellForm()">
                   Cancel
@@ -365,6 +382,9 @@
                   "
                 >
                   You do not have that many shares to sell.
+                </p>
+                <p *ngIf="transactionPrice < 0">
+                  Please do not enter a negative number.
                 </p>
               </div>
             </div>
