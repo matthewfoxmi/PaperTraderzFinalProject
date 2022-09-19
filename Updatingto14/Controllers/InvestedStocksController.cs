@@ -108,6 +108,11 @@ namespace Updatingto14.Controllers
                 context.SaveChanges();
                //return stock;
             }
+            //Validation so user can't "sell" negative stocks
+            else if (sharesSold < 0)
+            {
+                //return null;
+            }
             //updates invested stock when shares are sold
             else
             {
