@@ -34,7 +34,7 @@ namespace Updatingto14.Controllers
                 User newUser = new User()
                 {
                     ProfileName = profileName,
-                    UserIcon = null,
+                    UserIcon = "https://lh3.googleusercontent.com/pw/AL9nZEVzkjXt1wEpNJXB1A-7Dc-dMDYKhg3_2KgLKcn1m2fVk4-NRX1lEfpAdPsKjnkT2hd2CTx4e9GgMd7Vv6tIIlRCs-7nsQyeJbRW_ZwWJYWyEf3ja7MpAmwx3uKbBP6eUr75UyfWB2mqDPYMQSDbYVnb=s512-no?authuser=0",
                     CurrentCash = 10000,
                     PortfolioTotalValue = 10000,
                     GoogleId = googleId
