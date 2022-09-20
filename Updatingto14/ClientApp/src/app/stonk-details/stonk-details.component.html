@@ -1,5 +1,5 @@
 <div *ngIf="loggedIn">
-  <!--stonk not found-->
+  <!--Shows only when stock is searched for and not found-->
   <div *ngIf="displayStonk.tickers.length == 0">
     <div class="row justify-content-center" style="text-align: center">
       <div
@@ -11,14 +11,15 @@
     </div>
   </div>
 
-  <!--stonk deets :)  -->
+  <!--Stock details  -->
   <div *ngIf="displayStonk.tickers.length != 0">
-    <!-- stock info -->
     <div class="row justify-content-center" style="text-align: center">
+      <!-- TRENDING UP STOCK DETAILS -->
       <div
         *ngIf="displayStonk.tickers[0].day.o <= displayStonk.tickers[0].day.c"
         class="card col col-sm-10 col-md-8 col-lg-6 shadow border border-success m-2 p-0"
       >
+        <!-- CARD HEADER -->
         <div class="card-header d-flex flex-row justify-content-between">
           <h3>
             {{ displayStonk.tickers[0].ticker }}
@@ -77,6 +78,7 @@
             Shares Owned: {{ sharesOwned }}
           </li>
         </ul>
+        <!-- FORM SECTION -->
         <div class="card-footer">
           <div class="row">
             <span class="col-6 text-start">
@@ -105,7 +107,6 @@
               >
                 Buy Stock
               </button>
-
               <button
                 *ngIf="sharesOwned > 0"
                 (click)="toggleSellForm()"
@@ -203,10 +204,12 @@
           </div>
         </div>
       </div>
+      <!-- TRENDING DOWN STOCK DETAILS -->
       <div
         *ngIf="displayStonk.tickers[0].day.o > displayStonk.tickers[0].day.c"
         class="card col col-sm-10 col-md-8 col-lg-6 shadow border border-danger m-2 p-0"
       >
+        <!-- CARD HEADER -->
         <div class="card-header d-flex flex-row justify-content-between">
           <h3>
             {{ displayStonk.tickers[0].ticker }}
@@ -265,6 +268,7 @@
             Shares Owned: {{ sharesOwned }}
           </li>
         </ul>
+        <!-- FORM SECTION -->
         <div class="card-footer">
           <div class="row">
             <span class="col-6 text-start">
