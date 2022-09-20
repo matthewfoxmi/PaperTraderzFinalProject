@@ -50,12 +50,27 @@ export class StonkDetailsComponent implements OnInit {
     }) 
     this.investedStockService.getSharesOwned(this.ticker).subscribe((response:InvestedStock) => {
       console.log(response)
-      this.sharesOwned = response.sharesOwned
+      if(response != null){
+        this.sharesOwned = response.sharesOwned;
+      }
+      else{
+        this.sharesOwned = 0;
+      }
     })   
     this.userService.getUserById(this.user.id).subscribe((response:User) => {
       this.currentCash = response.currentCash;
     });
   }
+
+  getSharesOwned():void{
+    this.investedStockService.getSharesOwned(this.ticker).subscribe((response:InvestedStock) => {
+      console.log(response);
+      this.sharesOwned = response.sharesOwned;
+      console.log(this.sharesOwned);
+      this.ngOnInit();
+    }); 
+  }
+
   //checks if the addedtowatching array contains the ticker, if so return true
   //results in only the remove from watchlist button showing if true
   getWatching():boolean {
@@ -94,10 +109,19 @@ export class StonkDetailsComponent implements OnInit {
       //console.log(currentPrice);
       this.investedStockService.purchaseStock(ticker, currentPrice, form.form.value.quantity).subscribe((response:InvestedStock) => {
         //console.log(response);
+      });
+      this.investedStockService.getSharesOwned(this.ticker).subscribe((response:any) => {
+        console.log(response);
+        if(response != null){
+          this.sharesOwned = response.sharesOwned;
+        }
+        else{
+          this.sharesOwned = 0;
+        }
+        console.log(this.sharesOwned);
         this.togglePurchaseForm();
       });
     });
-    
   }
 
   sellStock(form:NgForm):any{
@@ -114,6 +138,15 @@ export class StonkDetailsComponent implements OnInit {
         this.toggleSellForm();
       });
     });
+    this.investedStockService.getSharesOwned(this.ticker).subscribe((response:any) => {
+      console.log(response);
+      if(response != null){
+        this.sharesOwned = response.sharesOwned;
+      }else{
+        this.sharesOwned = 0;
+      }
+      console.log(this.sharesOwned);
+    }); 
     
   }
 
@@ -138,13 +171,7 @@ export class StonkDetailsComponent implements OnInit {
     return this.transactionPrice;
   }
 
-  getSharesOwned(){
-    this.investedStockService.getSharesOwned(this.ticker).subscribe((response:InvestedStock) => {
-      console.log(response);
-      this.sharesOwned = response.sharesOwned;
-      console.log(this.sharesOwned);
-    }) 
-  }
+ 
 
 
 

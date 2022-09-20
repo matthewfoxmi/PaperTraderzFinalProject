@@ -121,9 +121,7 @@
                 <form
                   *ngIf="displayStonk.tickers[0].day.c > 0"
                   #purchaseStockForm="ngForm"
-                  (ngSubmit)="
-                    purchaseStock(purchaseStockForm); getSharesOwned()
-                  "
+                  (ngSubmit)="purchaseStock(purchaseStockForm)"
                 >
                   <input
                     id="formtextModal"
@@ -138,6 +136,7 @@
                     *ngIf="
                       transactionPrice > 0 && transactionPrice <= currentCash
                     "
+                    (click)="ngOnInit(); getSharesOwned()"
                     id="formbuttonModal"
                   >
                     Purchase
@@ -184,6 +183,7 @@
                       sharesOwned * displayStonk.tickers[0].day.c >=
                         transactionPrice
                     "
+                    (click)="ngOnInit(); getSharesOwned()"
                     id="formbuttonModal"
                   >
                     Sell
@@ -341,6 +341,7 @@
                     *ngIf="
                       transactionPrice > 0 && transactionPrice <= currentCash
                     "
+                    (click)="ngOnInit(); getSharesOwned()"
                     id="formbuttonModal"
                   >
                     Purchase
@@ -387,6 +388,7 @@
                       sharesOwned * displayStonk.tickers[0].day.c >=
                         transactionPrice
                     "
+                    (click)="ngOnInit(); getSharesOwned()"
                     id="formbuttonModal"
                   >
                     Sell
