@@ -132,7 +132,12 @@
                     ngModel
                   />
                   <br />
-                  <button *ngIf="transactionPrice > 0" id="formbuttonModal">
+                  <button
+                    *ngIf="
+                      transactionPrice > 0 && transactionPrice <= currentCash
+                    "
+                    id="formbuttonModal"
+                  >
                     Purchase
                   </button>
                 </form>
@@ -171,7 +176,14 @@
                     ngModel
                   />
                   <br />
-                  <button *ngIf="transactionPrice > 0" id="formbuttonModal">
+                  <button
+                    *ngIf="
+                      transactionPrice > 0 &&
+                      sharesOwned * displayStonk.tickers[0].day.c >=
+                        transactionPrice
+                    "
+                    id="formbuttonModal"
+                  >
                     Sell
                   </button>
                 </form>
@@ -323,7 +335,12 @@
                     ngModel
                   />
                   <br />
-                  <button *ngIf="transactionPrice > 0" id="formbuttonModal">
+                  <button
+                    *ngIf="
+                      transactionPrice > 0 && transactionPrice <= currentCash
+                    "
+                    id="formbuttonModal"
+                  >
                     Purchase
                   </button>
                 </form>
@@ -362,7 +379,14 @@
                     ngModel
                   />
                   <br />
-                  <button *ngIf="transactionPrice > 0" id="formbuttonModal">
+                  <button
+                    *ngIf="
+                      transactionPrice > 0 &&
+                      sharesOwned * displayStonk.tickers[0].day.c >=
+                        transactionPrice
+                    "
+                    id="formbuttonModal"
+                  >
                     Sell
                   </button>
                 </form>
