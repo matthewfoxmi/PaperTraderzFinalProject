@@ -40,6 +40,9 @@ export class StonkListComponent implements OnInit {
         this.stonk.tickers.sort((a, b) => a.ticker.localeCompare(b.ticker))
       });
     });
+    this.watchingService.getAllWatchingStocks().subscribe((response: any) => {
+      this.addedToWatching = response;
+    });
   }
 
   getWatching(ticker:string):boolean {
