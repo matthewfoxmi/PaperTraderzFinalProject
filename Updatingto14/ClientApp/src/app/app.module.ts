@@ -41,7 +41,8 @@ import { AboutComponent } from './about/about.component';
       { path: 'WatchList', component: WatchListComponent },
       { path: 'Leaderboard', component: LeaderBoardComponent },
       { path: 'StonkDetails/:ticker', component: StonkDetailsComponent },
-      { path: 'UserStats/:googleId', component: UserStatsComponent}
+      { path: 'UserStats/:googleId', component: UserStatsComponent},
+      { path: 'About', component: AboutComponent}
     ])
   ],
   providers: [
