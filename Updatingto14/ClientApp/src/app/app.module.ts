@@ -15,6 +15,7 @@ import { LeaderBoardComponent } from './leader-board/leader-board.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { StonkDetailsComponent } from './stonk-details/stonk-details.component';
 import { UserStatsComponent } from './user-stats/user-stats.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UserStatsComponent } from './user-stats/user-stats.component';
     LeaderBoardComponent,
     PortfolioComponent,
     StonkDetailsComponent,
-    UserStatsComponent
+    UserStatsComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

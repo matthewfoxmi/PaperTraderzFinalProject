@@ -26,7 +26,6 @@ export class NavMenuComponent implements OnInit {
           console.log(response)
         })
       }
-
     });
   }
 
