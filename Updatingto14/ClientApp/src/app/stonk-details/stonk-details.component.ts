@@ -138,6 +138,14 @@ export class StonkDetailsComponent implements OnInit {
     return this.transactionPrice;
   }
 
+  getSharesOwned(){
+    this.investedStockService.getSharesOwned(this.ticker).subscribe((response:InvestedStock) => {
+      console.log(response);
+      this.sharesOwned = response.sharesOwned;
+      console.log(this.sharesOwned);
+    }) 
+  }
+
 
 
 }

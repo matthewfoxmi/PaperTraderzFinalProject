@@ -121,7 +121,9 @@
                 <form
                   *ngIf="displayStonk.tickers[0].day.c > 0"
                   #purchaseStockForm="ngForm"
-                  (ngSubmit)="purchaseStock(purchaseStockForm)"
+                  (ngSubmit)="
+                    purchaseStock(purchaseStockForm); getSharesOwned()
+                  "
                 >
                   <input
                     id="formtextModal"
