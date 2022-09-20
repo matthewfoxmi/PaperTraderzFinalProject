@@ -48,6 +48,8 @@ export class StonkDetailsComponent implements OnInit {
       this.addedToWatching = response;
       //console.log(response);      
     }) 
+    //moved getSharesOwned inside the ngOnInit, and inside the subscribe for getallwatching stocks
+    //ngOnInit also had to be added to the (click) for the html form, as well as the getSharesOwned method
     this.investedStockService.getSharesOwned(this.ticker).subscribe((response:InvestedStock) => {
       console.log(response)
       if(response != null){
@@ -110,6 +112,7 @@ export class StonkDetailsComponent implements OnInit {
       this.investedStockService.purchaseStock(ticker, currentPrice, form.form.value.quantity).subscribe((response:InvestedStock) => {
         //console.log(response);
       });
+      //added getSharesOwned to purchaseStock to update after every purchase
       this.investedStockService.getSharesOwned(this.ticker).subscribe((response:any) => {
         console.log(response);
         if(response != null){
@@ -119,6 +122,7 @@ export class StonkDetailsComponent implements OnInit {
           this.sharesOwned = 0;
         }
         console.log(this.sharesOwned);
+        //togglePurchaseForm moved inside subscribe - fixed sharesOwned updating
         this.togglePurchaseForm();
       });
     });
@@ -138,6 +142,7 @@ export class StonkDetailsComponent implements OnInit {
         this.toggleSellForm();
       });
     });
+    //added SharesOwned to sellStock to update after every purchase
     this.investedStockService.getSharesOwned(this.ticker).subscribe((response:any) => {
       console.log(response);
       if(response != null){
