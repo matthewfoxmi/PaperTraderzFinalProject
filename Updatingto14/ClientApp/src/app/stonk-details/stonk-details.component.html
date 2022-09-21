@@ -345,14 +345,6 @@
                   <input
                     id="formtextModal"
                     type="number"
-                    placeholder="Max Purchase: {{
-                      roundDown(currentCash / displayStonk.tickers[0].day.c)
-                    }} shares for ${{
-                      numberWithCommas(
-                        roundDown(currentCash / displayStonk.tickers[0].day.c) *
-                          displayStonk.tickers[0].day.c
-                      )
-                    }}"
                     name="quantity"
                     min="1"
                     (input)="calculatePrice(purchaseStockForm)"
@@ -380,6 +372,18 @@
                   Cancel
                 </button>
                 <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
+                <p>
+                  Max Purchase:
+                  {{
+                    roundDown(currentCash / displayStonk.tickers[0].day.c)
+                  }}
+                  shares for ${{
+                    numberWithCommas(
+                      roundDown(currentCash / displayStonk.tickers[0].day.c) *
+                        displayStonk.tickers[0].day.c
+                    )
+                  }}
+                </p>
                 <p
                   *ngIf="
                     transactionPrice > 0 && transactionPrice <= currentCash

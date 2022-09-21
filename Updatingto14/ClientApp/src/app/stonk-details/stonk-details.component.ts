@@ -156,10 +156,12 @@ export class StonkDetailsComponent implements OnInit {
 
   togglePurchaseForm():void{
     this.displayPurchaseForm = !this.displayPurchaseForm;
+    this.transactionPrice = 0;
   }
 
   toggleSellForm():void{
     this.displaySellForm = !this.displaySellForm;
+    this.transactionPrice = 0;
   }
 
   numberWithCommas(x:number) {
