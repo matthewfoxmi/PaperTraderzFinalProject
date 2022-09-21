@@ -175,8 +175,35 @@ export class StonkDetailsComponent implements OnInit {
     return this.transactionPrice;
   }
 
- 
+  purchaseMax(){
+    let params = this.route.snapshot.paramMap;
+    let ticker:string = String(params.get("ticker"));
+    let currentPrice:number;
+    this.stonkService.getApiStonks(ticker).subscribe((response: Stonk) => {
+      currentPrice = response.tickers[0].day.c;
+      //console.log(currentPrice);
+      this.investedStockService.purchaseStock(ticker, currentPrice, Math.floor(this.currentCash / this.displayStonk.tickers[0].day.c)).subscribe((response:InvestedStock) => {
+        //console.log(response);
+        this.investedStockService.getSharesOwned(this.ticker).subscribe((response:any) => {
+          console.log(response);
+          if(response != null){
+            this.sharesOwned = response.sharesOwned;
+          }
+          else{
+            this.sharesOwned = 0;
+          }
+      });
+      //added getSharesOwned to purchaseStock to update after every purchase
+        console.log(this.sharesOwned);
+        //togglePurchaseForm moved inside subscribe - fixed sharesOwned updating
+        this.togglePurchaseForm();
+      });
+    });
+  }
 
+  roundDown(x:number):number{
+    return Math.floor(x);
+  }
 
 
 }

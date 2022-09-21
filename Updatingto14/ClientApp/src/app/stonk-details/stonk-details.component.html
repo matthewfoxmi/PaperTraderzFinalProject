@@ -126,6 +126,14 @@
                   <input
                     id="formtextModal"
                     type="number"
+                    placeholder="Max Purchase: {{
+                      roundDown(currentCash / displayStonk.tickers[0].day.c)
+                    }} shares for ${{
+                      numberWithCommas(
+                        roundDown(currentCash / displayStonk.tickers[0].day.c) *
+                          displayStonk.tickers[0].day.c
+                      )
+                    }}"
                     name="quantity"
                     min="1"
                     (input)="calculatePrice(purchaseStockForm)"
@@ -142,6 +150,9 @@
                     Purchase
                   </button>
                 </form>
+                <button (click)="ngOnInit(); purchaseMax()">
+                  Purchase Max
+                </button>
                 <button id="formbuttonModal" (click)="togglePurchaseForm()">
                   Cancel
                 </button>
