@@ -111,20 +111,20 @@ export class StonkDetailsComponent implements OnInit {
       //console.log(currentPrice);
       this.investedStockService.purchaseStock(ticker, currentPrice, form.form.value.quantity).subscribe((response:InvestedStock) => {
         //console.log(response);
+        this.investedStockService.getSharesOwned(this.ticker).subscribe((response:any) => {
+          console.log(response);
+          if(response != null){
+            this.sharesOwned = response.sharesOwned;
+          }
+          else{
+            this.sharesOwned = 0;
+          }
+          console.log(this.sharesOwned);
+          //togglePurchaseForm moved inside subscribe - fixed sharesOwned updating
+          this.togglePurchaseForm();
+        });
       });
       //added getSharesOwned to purchaseStock to update after every purchase
-      this.investedStockService.getSharesOwned(this.ticker).subscribe((response:any) => {
-        console.log(response);
-        if(response != null){
-          this.sharesOwned = response.sharesOwned;
-        }
-        else{
-          this.sharesOwned = 0;
-        }
-        console.log(this.sharesOwned);
-        //togglePurchaseForm moved inside subscribe - fixed sharesOwned updating
-        this.togglePurchaseForm();
-      });
     });
   }
 
@@ -140,19 +140,18 @@ export class StonkDetailsComponent implements OnInit {
       this.investedStockService.sellStock(ticker, currentPrice, form.form.value.quantity).subscribe((response:InvestedStock) => {
         console.log(response);
         this.toggleSellForm();
+        this.investedStockService.getSharesOwned(this.ticker).subscribe((response:any) => {
+          console.log(response);
+          if(response != null){
+            this.sharesOwned = response.sharesOwned;
+          }else{
+            this.sharesOwned = 0;
+          }
+          console.log(this.sharesOwned);
+        });
       });
     });
     //added SharesOwned to sellStock to update after every purchase
-    this.investedStockService.getSharesOwned(this.ticker).subscribe((response:any) => {
-      console.log(response);
-      if(response != null){
-        this.sharesOwned = response.sharesOwned;
-      }else{
-        this.sharesOwned = 0;
-      }
-      console.log(this.sharesOwned);
-    }); 
-    
   }
 
   togglePurchaseForm():void{
