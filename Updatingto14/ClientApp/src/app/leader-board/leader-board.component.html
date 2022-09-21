@@ -4,58 +4,143 @@
     class="row justify-content-center"
     style="text-align: left"
   >
+    <!-- If we want the icons smaller, change image div from col-3 to col-2 and card body div from col-9 to col-10-->
+    <!-- First Place User -->
     <div
       class="card col col-sm-10 col-md-8 col-lg-6 shadow border border-warning m-2 p-2"
       *ngIf="i == 0"
     >
-      <p>
-        <img height="100px" src="{{ u.user.userIcon }}" />
-        {{ i + 1 }}.
-        <a class="link-warning" routerLink="/UserStats/{{ u.user.googleId }}">{{
-          u.user.profileName
-        }}</a
-        >- ${{ numberWithCommas(u.netWorth)
-        }}<img
-          height="50px"
-          src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/468583d21fd7248.png"
-        />
-      </p>
+      <div class="row g-0">
+        <div class="col-3 d-flex align-items-center">
+          <!-- MAYBE USE justify-content-center too? (in class above) this will left/right center image within the portion on the left-->
+          <!--line above is the image div (left side)-->
+          <img
+            src="{{ u.user.userIcon }}"
+            class="rounded-start"
+            style="width: 100px; height: 100px; object-fit: cover"
+          />
+          <!-- line above style forces image inside a 100px by 100px square and crops it-->
+        </div>
+        <div class="col-9">
+          <!--line above is the card body div (right side)-->
+          <div class="card-body text-nowrap">
+            <!-- LOOK INTO overflow-scroll TOMORROW IF WE CAN USE ON MOBILE BUT NOT DESKTOP, goes in class on line above-->
+            <!-- With only text-nowrap and not the overflow scroll it looks fine on all devices except Galaxy Fold but thats a dumb phone anyway-->
+            <p class="card-title ps-1">
+              {{ i + 1 }}.
+              <a
+                class="link-warning"
+                routerLink="/UserStats/{{ u.user.googleId }}"
+                >{{ u.user.profileName }}</a
+              >
+            </p>
+            <p class="card-text ps-5 d-flex justify-content-between">
+              ${{ numberWithCommas(u.netWorth) }}
+              <img height="45px" src="assets/images/medal1.png" />
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- Second Place User -->
     <div
       class="card col col-sm-10 col-md-8 col-lg-6 shadow border border-secondary m-2 p-2"
       *ngIf="i == 1"
     >
-      <p>
-        <img height="100px" src="{{ u.user.userIcon }}" />
-        {{ i + 1 }}.
-        <a class="link-success" routerLink="/UserStats/{{ u.user.googleId }}">{{
-          u.user.profileName
-        }}</a>
-        - ${{ numberWithCommas(u.netWorth)
-        }}<img
-          height="45px"
-          src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d07a8f12cd136e6.png"
-        />
-      </p>
+      <div class="row g-0">
+        <div class="col-3 d-flex align-items-center">
+          <!--line above is the image div (left side)-->
+          <img
+            src="{{ u.user.userIcon }}"
+            class="rounded-start"
+            style="width: 100px; height: 100px; object-fit: cover"
+          />
+        </div>
+        <div class="col-9">
+          <!--line above is the card body div (right side)-->
+          <div class="card-body text-nowrap">
+            <p class="card-title ps-1">
+              {{ i + 1 }}.
+              <a
+                class="link-success"
+                routerLink="/UserStats/{{ u.user.googleId }}"
+                >{{ u.user.profileName }}</a
+              >
+            </p>
+            <p class="card-text ps-5 d-flex justify-content-between">
+              ${{ numberWithCommas(u.netWorth)
+              }}<img height="45px" src="assets/images/medal2.png" />
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- Third Place User -->
     <div
       class="card col col-sm-10 col-md-8 col-lg-6 shadow border border-danger m-2 p-2"
       *ngIf="i == 2"
     >
-      <p>
-        <img height="100px" src="{{ u.user.userIcon }}" />
-        {{ i + 1 }}.
-        <a class="link-danger" routerLink="/UserStats/{{ u.user.googleId }}">
-          <u>{{ u.user.profileName }}</u></a
-        >
-        - ${{ numberWithCommas(u.netWorth)
-        }}<img
-          height="50px"
-          src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/829134d3159b00b.png"
-        />
-      </p>
+      <div class="row g-0">
+        <div class="col-3 d-flex align-items-center">
+          <!--line above is the image div (left side)-->
+          <img
+            src="{{ u.user.userIcon }}"
+            class="rounded-start"
+            style="width: 100px; height: 100px; object-fit: cover"
+          />
+        </div>
+        <div class="col-9">
+          <!--line above is the card body div (right side)-->
+          <div class="card-body text-nowrap">
+            <p class="card-title ps-1">
+              {{ i + 1 }}.
+              <a
+                class="link-danger"
+                routerLink="/UserStats/{{ u.user.googleId }}"
+                >{{ u.user.profileName }}</a
+              >
+            </p>
+            <p class="card-text ps-5 d-flex justify-content-between">
+              ${{ numberWithCommas(u.netWorth)
+              }}<img height="45px" src="assets/images/medal3.png" />
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+    <!--Everyone else-->
     <div
+      class="card col col-sm-10 col-md-8 col-lg-6 shadow border border-primary m-2 p-2"
+      *ngIf="i >= 3"
+    >
+      <div class="row g-0">
+        <div class="col-3 d-flex align-items-center">
+          <!--line above is the image div (left side)-->
+          <img
+            src="{{ u.user.userIcon }}"
+            class="rounded-start"
+            style="width: 100px; height: 100px; object-fit: cover"
+          />
+        </div>
+        <div class="col-9">
+          <!--line above is the card body div (right side)-->
+          <div class="card-body text-nowrap">
+            <p class="card-title ps-1">
+              {{ i + 1 }}.
+              <a
+                class="link-primary"
+                routerLink="/UserStats/{{ u.user.googleId }}"
+                >{{ u.user.profileName }}</a
+              >
+            </p>
+            <p class="card-text ps-5">${{ numberWithCommas(u.netWorth) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- THIS WAS THE CARD LAYOUT BEFORE -->
+
+    <!-- <div
       class="card col col col-sm-10 col-md-8 col-lg-6 shadow border border-primary m-2 p-2"
       *ngIf="i >= 3"
     >
@@ -67,6 +152,6 @@
         }}</a>
         - ${{ numberWithCommas(u.netWorth) }}
       </p>
-    </div>
+    </div> -->
   </div>
 </div>
