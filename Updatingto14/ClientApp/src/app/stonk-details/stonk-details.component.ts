@@ -121,6 +121,9 @@ export class StonkDetailsComponent implements OnInit {
           }
           console.log(this.sharesOwned);
           //togglePurchaseForm moved inside subscribe - fixed sharesOwned updating
+          this.userService.getUserById(this.user.id).subscribe((response:User) => {
+            this.currentCash = response.currentCash;
+          });
           this.togglePurchaseForm();
         });
       });
@@ -148,6 +151,9 @@ export class StonkDetailsComponent implements OnInit {
             this.sharesOwned = 0;
           }
           console.log(this.sharesOwned);
+          this.userService.getUserById(this.user.id).subscribe((response:User) => {
+            this.currentCash = response.currentCash;
+          });
         });
       });
     });
@@ -198,7 +204,38 @@ export class StonkDetailsComponent implements OnInit {
       //added getSharesOwned to purchaseStock to update after every purchase
         console.log(this.sharesOwned);
         //togglePurchaseForm moved inside subscribe - fixed sharesOwned updating
+        this.userService.getUserById(this.user.id).subscribe((response:User) => {
+          this.currentCash = response.currentCash;
+        });
         this.togglePurchaseForm();
+      });
+    });
+  }
+
+  sellMax(){
+    let params = this.route.snapshot.paramMap;
+    let ticker:string = String(params.get("ticker"));
+    let currentPrice:number;
+    //calls to the api and obtains current price 
+    this.stonkService.getApiStonks(ticker).subscribe((response: Stonk) => {
+      currentPrice = response.tickers[0].day.c;
+      console.log(currentPrice);
+      //passes in the ticker, current price (obtained above) and quantity of stocks to sell from form
+      this.investedStockService.sellStock(ticker, currentPrice, this.sharesOwned).subscribe((response:InvestedStock) => {
+        console.log(response);
+        this.toggleSellForm();
+        this.investedStockService.getSharesOwned(this.ticker).subscribe((response:any) => {
+          console.log(response);
+          if(response != null){
+            this.sharesOwned = response.sharesOwned;
+          }else{
+            this.sharesOwned = 0;
+          }
+          this.userService.getUserById(this.user.id).subscribe((response:User) => {
+            this.currentCash = response.currentCash;
+          });
+          console.log(this.sharesOwned);
+        });
       });
     });
   }

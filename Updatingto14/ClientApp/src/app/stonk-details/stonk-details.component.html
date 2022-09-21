@@ -205,6 +205,9 @@
                     Sell
                   </button>
                 </form>
+                <button id="formbuttonModal" (click)="ngOnInit(); sellMax()">
+                  Sell All
+                </button>
                 <button id="formbuttonModal" (click)="toggleSellForm()">
                   Cancel
                 </button>
@@ -427,10 +430,20 @@
                     Sell
                   </button>
                 </form>
+                <button id="formbuttonModal" (click)="ngOnInit(); sellMax()">
+                  Sell All
+                </button>
                 <button id="formbuttonModal" (click)="toggleSellForm()">
                   Cancel
                 </button>
                 <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
+                <p>
+                  Sell All: {{ sharesOwned }} for ${{
+                    numberWithCommas(
+                      sharesOwned * displayStonk.tickers[0].day.c
+                    )
+                  }}
+                </p>
                 <p
                   *ngIf="
                     transactionPrice > 0 &&
