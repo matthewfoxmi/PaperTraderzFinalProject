@@ -212,6 +212,13 @@
                   Cancel
                 </button>
                 <p>Current Cash: ${{ numberWithCommas(currentCash) }}</p>
+                <p>
+                  Sell All: {{ sharesOwned }} for ${{
+                    numberWithCommas(
+                      sharesOwned * displayStonk.tickers[0].day.c
+                    )
+                  }}
+                </p>
                 <p
                   *ngIf="
                     transactionPrice > 0 &&
