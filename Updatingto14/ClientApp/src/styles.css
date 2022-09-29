@@ -61,6 +61,10 @@ body {
   border-color: #ac0031;
 }
 
+.border-secondary {
+  border-color: #399494;
+}
+
 .border-success {
   border-color: #73ac31;
 }
@@ -69,7 +73,9 @@ body {
   border-color: #ee2039;
 }
 
-.border-secondary {
+
+
+.border-light {
   border-color: #399494;
 }
 
